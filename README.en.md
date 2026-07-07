@@ -20,6 +20,7 @@ A **cross-agent, cross-platform, portable** method for relaying project context.
 | File | Description |
 |------|-------------|
 | `简报接力-v1.0.md` | Full method specification (Chinese, authoritative) |
+| `Brief-Relay-Framework-v1.0-en.md` | Full method specification (English, synced with Chinese) |
 | `template/` | Copy-paste ready starter files (Chinese) |
 | `template/使用说明.md` | How to use the template (Chinese) |
 | `template/en/` | English starter files (kept in sync with the Chinese template) |
@@ -27,6 +28,8 @@ A **cross-agent, cross-platform, portable** method for relaying project context.
 | `README.md` | This README's Chinese version |
 | `CONTRIBUTING.md` | Contribution guide |
 | `LICENSE` | MIT License |
+
+> The specification is now available in **both Chinese and English**: `简报接力-v1.0.md` (Chinese, authoritative) and `Brief-Relay-Framework-v1.0-en.md` (English), kept in sync.
 
 ## Quick start
 
