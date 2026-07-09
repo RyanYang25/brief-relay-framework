@@ -1,4 +1,4 @@
-# BRIEF Relay Framework (BRF) v1.1
+# BRIEF Relay Framework (BRF)
 
 A **cross-agent, cross-platform, portable** method for relaying project context. Its core is a single BRIEF that acts as both the **entry point and the evolution engine** of a project. Combined with `@context` contract headers, it makes the "who-produces / who-consumes / what's-next" relationship explicit—so any new AI agent (WorkBuddy / Trae / Qoderwork / etc.) can pick up the project folder and take over with zero cost.
 
@@ -19,10 +19,8 @@ A **cross-agent, cross-platform, portable** method for relaying project context.
 
 | File | Description |
 |------|-------------|
-| `简报接力-v1.1.md` | Full method specification (Chinese, current version) |
-| `简报接力-v1.0.md` | Full method specification (Chinese, historical version) |
-| `Brief-Relay-Framework-v1.1-en.md` | Full method specification (English, current, synced with Chinese) |
-| `Brief-Relay-Framework-v1.0-en.md` | Full method specification (English, historical version) |
+| `简报接力.md` | Full method specification (Chinese, current version) |
+| `Brief-Relay-Framework.md` | Full method specification (English, current, synced with Chinese) |
 | `template/` | Copy-paste ready starter files (Chinese) |
 | `template/使用说明.md` | How to use the template (Chinese) |
 | `template/en/` | English starter files (kept in sync with the Chinese template) |
@@ -31,7 +29,7 @@ A **cross-agent, cross-platform, portable** method for relaying project context.
 | `CONTRIBUTING.md` | Contribution guide |
 | `LICENSE` | MIT License |
 
-> The specification is now available in **both Chinese and English**, in two versions: **v1.1 (current)** — `简报接力-v1.1.md` (Chinese) / `Brief-Relay-Framework-v1.1-en.md` (English); **v1.0 (historical)** — `简报接力-v1.0.md` (Chinese) / `Brief-Relay-Framework-v1.0-en.md` (English). Chinese is authoritative; the English spec is kept in sync.
+> The specification is available in **both Chinese and English** (current version): `简报接力.md` (Chinese) / `Brief-Relay-Framework.md` (English). Chinese is authoritative; the English spec is kept in sync. Earlier versions (e.g. v1.0) are preserved via git tags / [GitHub Releases](https://github.com/RyanYang25/brief-relay-framework/releases).
 
 ## Quick start
 
