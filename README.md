@@ -1,9 +1,11 @@
-[![Version](https://img.shields.io/badge/version-v1.0-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.1-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
-[![Docs: 中文](https://img.shields.io/badge/docs-中文-blue)](https://github.com/RyanYang25/brief-relay-framework/blob/main/handoffs/简报接力-v1.0.md)
-[![Docs: English](https://img.shields.io/badge/docs-English-blue)](https://github.com/RyanYang25/brief-relay-framework/blob/main/handoffs/Brief-Relay-Framework-v1.0-en.md)
+[![Docs: 中文 v1.1](https://img.shields.io/badge/docs-中文%20v1.1-blue)](https://github.com/RyanYang25/brief-relay-framework/blob/main/%E7%AE%80%E6%8A%A5%E6%8E%A5%E5%8A%9B-v1.1.md)
+[![Docs: English v1.1](https://img.shields.io/badge/docs-English%20v1.1-blue)](https://github.com/RyanYang25/brief-relay-framework/blob/main/Brief-Relay-Framework-v1.1-en.md)
+[![Docs: 中文 v1.0](https://img.shields.io/badge/docs-中文%20v1.0-lightgrey)](https://github.com/RyanYang25/brief-relay-framework/blob/main/%E7%AE%80%E6%8A%A5%E6%8E%A5%E5%8A%9B-v1.0.md)
+[![Docs: English v1.0](https://img.shields.io/badge/docs-English%20v1.0-lightgrey)](https://github.com/RyanYang25/brief-relay-framework/blob/main/Brief-Relay-Framework-v1.0-en.md)
 
 # 简报接力框架 · BRIEF Relay Framework (BRF)
 
@@ -88,25 +90,29 @@ downstream: context/current.md → context/standards.md → references/
 
 ```
 brief-relay-framework/
-├── README.md                              ← 本文件
+├── README.md                              ← 本文件（中文门面）
+├── README.en.md                           ← English README
 ├── LICENSE                                ← MIT License
 ├── CONTRIBUTING.md                        ← 贡献指南
-├── template/                              ← 开箱模板（中 / 英文 starter）
-│   ├── BRIEF.md
-│   ├── context/current.md
-│   ├── context/standards.md
-│   └── en/                                ← 英文 starter
-└── handoffs/                              ← 方法规范（权威交付物）
-    ├── 简报接力-v1.0.md                     ← 中文规范
-    └── Brief-Relay-Framework-v1.0-en.md    ← English spec
+├── 简报接力-v1.1.md                        ← 方法规范（中文，当前版）
+├── 简报接力-v1.0.md                        ← 方法规范（中文，历史版）
+├── Brief-Relay-Framework-v1.1-en.md       ← Method Spec (English, current)
+├── Brief-Relay-Framework-v1.0-en.md       ← Method Spec (English, historical)
+└── template/                              ← 开箱模板（中 / 英文 starter）
+    ├── BRIEF.md
+    ├── context/current.md
+    ├── context/standards.md
+    └── en/                                ← 英文 starter
 ```
 
 ---
 
 ## 文档（Documentation）
 
-- **方法规范（中文）**：[handoffs/简报接力-v1.0.md](handoffs/简报接力-v1.0.md)
-- **Method Spec (English)**：[handoffs/Brief-Relay-Framework-v1.0-en.md](handoffs/Brief-Relay-Framework-v1.0-en.md)
+- **方法规范（中文 · 当前 v1.1）**：[简报接力-v1.1.md](简报接力-v1.1.md)
+- **Method Spec (English · current v1.1)**：[Brief-Relay-Framework-v1.1-en.md](Brief-Relay-Framework-v1.1-en.md)
+- **方法规范（中文 · 历史 v1.0）**：[简报接力-v1.0.md](简报接力-v1.0.md)
+- **Method Spec (English · historical v1.0)**：[Brief-Relay-Framework-v1.0-en.md](Brief-Relay-Framework-v1.0-en.md)
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 
