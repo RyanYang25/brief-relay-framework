@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.1
+# Brief Relay Framework (BRF) v1.2
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.1. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default).
+> **Version note**: This is v1.2. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper).
 
 ---
 
@@ -489,3 +489,32 @@ Every BRF project should keep a "cross-platform deployment checklist" in `standa
 | Needs fresh-environment install | Runtime deps (community skills, Python venv, platform plugins, etc.) not in the project | Annotate the **install method** (command / link); new Agent verifies item-by-item and installs on demand |
 
 > This checklist is the new Agent's "health check" on takeover: first confirm the "carried" items are complete, then handle the "needs install" items — avoiding a silent missing dependency that breaks the project.
+
+### XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist (new in v1.2)
+
+> Source: a generic method abstracted from two practices of standardized skills — "meta-info self-description" (frontmatter: name / description / use-when) and "pre-publish testing". BRF itself does not adopt the skill wrapper (see project-space standards.md Ch. VII for positioning), but absorbs the standardization thinking — so that any project reads as "instantly understandable, takeover with a procedure" to a new Agent.
+
+#### 13.1 Project Identity Snapshot (30-second takeover card)
+
+At the top of every BRF project's `BRIEF.md`, place a pure-Markdown "project identity snapshot" (no YAML / hidden dirs; readable on any platform, visible at repo root) that answers at least four questions:
+
+| Field | Question to answer | Purpose |
+|-------|-------------------|---------|
+| What it is | What is the essence of this project / this context | New Agent builds a mental model in 30s, avoiding mis-positioning |
+| When to read deep | Under what circumstances should project-space details be read | Separates "apply the framework" from "maintain the framework" takers, skipping irrelevant reading |
+| Minimum takeover action | The minimum must-read + must-do before touching anything | Prevents context drift from "editing before reading" |
+| Prerequisites | Preconditions for running / publishing | Taker confirms the environment upfront, avoiding stalls on auth / toolchain |
+
+> Key point: the snapshot parallels a skill's frontmatter, but **deliberately avoids YAML** — portability is BRF's first constraint, and YAML + platform-hidden dirs would break "pure Markdown + root-visible". Machine-readable metadata goes to the HTML-comment `@context-root` block; human / Agent-readable summary goes to the pure-Markdown snapshot; the two are complementary.
+
+#### 13.2 Takeover Checklist (parallels skill pre-publish testing)
+
+At the "Session Recovery Protocol" (Ch. IX), attach a "Takeover Checklist" that a new Agent **ticks item-by-item before acting**, paralleling the skill discipline of "tested before publish":
+
+- [ ] Read `BRIEF.md` (incl. @context-root block) + current-status file (incl. @context block); their last-updated timestamps match
+- [ ] Determined which track this instruction belongs to: project-space maintenance, or public-spec publishing (see dual-track declaration)
+- [ ] Reconciled current status and in-progress tasks; no unclosed in-flight task (or already reconciled)
+- [ ] If publishing: confirmed the three red lines — auth / scope / authorship
+- [ ] Clarified the downstream relay order of this change (which file moves next)
+
+> This checklist makes the "Session Recovery Protocol" executable: turning "what to do on recovery" from a principle into a tick-action, lowering the chance a new Agent skips a step. It is also the acceptance criterion for new-Agent-takeover — if every item can be ticked, the project's self-description is proven adequate.
