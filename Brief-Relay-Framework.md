@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.2
+# Brief Relay Framework (BRF) v1.3
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.2. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper).
+> **Version note**: This is v1.3. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs.
 
 ---
 
@@ -518,3 +518,53 @@ At the "Session Recovery Protocol" (Ch. IX), attach a "Takeover Checklist" that 
 - [ ] Clarified the downstream relay order of this change (which file moves next)
 
 > This checklist makes the "Session Recovery Protocol" executable: turning "what to do on recovery" from a principle into a tick-action, lowering the chance a new Agent skips a step. It is also the acceptance criterion for new-Agent-takeover — if every item can be ticked, the project's self-description is proven adequate.
+
+---
+
+### XIV. Traceability & Decision Lifecycle (four-state model)
+
+> **Starting point**: The real danger for a project is not that documents sit unused for a while — it is discovering, when you need to look back, that there is no evidence: you cannot explain why something was designed this way, nor tell whether an old problem has resurfaced. Trace first, then analyze. Requirement discussions, trade-offs, errors, fixes, and evaluation results from development should all be recorded structurally, not left only in conversation.
+
+#### 14.1 The four-state lifecycle (each item belongs to exactly one state)
+
+Every decision / issue / proposal / evaluation entry should explicitly belong to one of the four states below, and migrate explicitly when its status changes:
+
+| State | Meaning | Entry condition | Typical landing file |
+|-------|---------|-----------------|----------------------|
+| **Open** | Issues still under discussion, assumptions, risks, to-verify items | Raised but not yet decided or verified | `current.md` "Open issues / assumptions / risks" section |
+| **Decisions** | Decisions made, with rationale, owner, impact scope | Decided (with rationale) | `current.md` "Recent decisions" + `PROJECT_GUIDANCE.md` |
+| **Resolved** | Issues solved, with fix method and corresponding regression case | Closed and verified | `current.md` issue clearance + `standards.md` "Pitfall records" |
+| **Archive** | Superseded proposals / evaluations still needing traceability (retire ≠ delete) | Proposal replaced / feature deprecated / evaluation rejected | git tag / `handoffs/` / iteration "excluded items" |
+
+> Key discipline: an entry belongs to exactly one state at a time. Open → Decisions → Resolved/Archive is the normal flow; the migration itself must also be persisted — no "ghost entries".
+
+#### 14.2 Open state: make "not-yet-clarified / not-yet-verified" explicit
+
+Open is the weakest link in most projects. It is deliberately decoupled from "in-progress tasks":
+
+- The **task table** manages "what to do" (work clearly mandated to execute);
+- The **open-issues table** manages "what is not yet clear / not yet verified" (assumptions, risks, open questions).
+
+`current.md` should hold a dedicated section for: Assumption, Risk, To-verify. These items are not rushed to "just decide", but they must be visible — at retrospective they are the key evidence explaining "why we later changed direction".
+
+#### 14.3 Decisions state: decision + rationale + owner + impact scope
+
+BRF already mandates "decisions must record rationale" (see Ch. III `current.md` recent decisions). v1.3 further requires each decision to carry at least four fields: **content + rationale + owner + impact scope**.
+
+- Owner: who made the call / who is responsible for execution;
+- Impact scope: which files, modules, collaborators, or downstream projects are affected.
+
+With all four present, a successor sees not just the conclusion but whether "this decision still holds" and "who is affected if I change it".
+
+#### 14.4 Archive state: retire ≠ delete
+
+Superseded proposals, deprecated features, and rejected evaluations move to Archive with "why retired" preserved — this is the baseline of traceability.
+
+- Existing infrastructure already naturally serves Archive: `git tag` anchors historical versions, `handoffs/` stores historical deliverables, and the public-spec iteration's "excluded items" records "why something did/didn't enter the spec";
+- Archived entries are **not deleted**; only the retirement reason and effective time are annotated, so that later "should the old proposal be revived" or "has the old problem resurfaced" can be checked against evidence.
+
+#### 14.5 Raw evidence vs structured docs: division, not substitution
+
+Platforms (Codex / Claude Code / local WorkBuddy, etc.) typically keep session logs locally. They can serve as **raw evidence** — letting another Agent analyze only user inputs, decision shifts, or failure paths. But chat logs **cannot substitute** for structured docs: docs read faster, have clearer boundaries, and suit team collaboration and version control better (consistent with Ch. IX "transcript has no authority").
+
+> Practical point: raw session logs are the "reference raw draft"; the four-state docs are the "authoritative truth for collaboration". Run both in parallel — keep raw evidence, but don't be held hostage by it.
