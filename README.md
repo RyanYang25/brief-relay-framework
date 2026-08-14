@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.3-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.4-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
@@ -12,6 +12,8 @@
 > **中文** — 用一份持续演进的「项目简报（BRIEF）」作为唯一入口，配合「契约头 + 接力棒 + 恢复协议」三件套，让任何 AI Agent 平台都能零成本接手、跨平台可迁移、项目上下文不丢失。
 
 *Keywords: context management · agent handoff · cross-platform · LLM workflow · prompt methodology · knowledge management · AI agent collaboration · project brief*
+
+> **本地项目空间说明（Local note，勿推送此说明至公开仓库）**：本目录是 BRF 方法论的自管理项目空间，含内部运维记录与个人 IP 参考资料，**仅限本地、禁止整体推送公开仓库**（红线见 `project-context/context/standards.md` 第三章）。对外公开交付物见 [github.com/RyanYang25/brief-relay-framework](https://github.com/RyanYang25/brief-relay-framework)；本地方法规范在 `project-context/handoffs/`（`简报接力.md` / `Brief-Relay-Framework.md`）。
 
 ---
 
@@ -106,9 +108,9 @@ brief-relay-framework/
 
 ## 文档（Documentation）
 
-- **方法规范（中文 · 当前 v1.3）**：[简报接力.md](简报接力.md)
-- **Method Spec (English · current v1.3)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
-- **历史版本（v1.0 / v1.1 / v1.2）**：通过 git tag 锚定，[`git checkout v1.2`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
+- **方法规范（中文 · 当前 v1.4）**：[简报接力.md](简报接力.md)
+- **Method Spec (English · current v1.4)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
+- **历史版本（v1.0 / v1.1 / v1.2 / v1.3）**：通过 git tag 锚定，[`git checkout v1.3`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 

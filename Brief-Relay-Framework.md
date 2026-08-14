@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.3
+# Brief Relay Framework (BRF) v1.4
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.3. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs.
+> **Version note**: This is v1.4. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out (self-check Open→Decisions→Resolved→Archive, all four states closed before the iteration counts as done), and feeds back the "active-context lightening" discipline (active files keep only current state + pointers; historical records are archived with originals kept intact) — the framework practices its own advocated traceability first, then distills it into a generic method.
 
 ---
 
@@ -568,3 +568,36 @@ Superseded proposals, deprecated features, and rejected evaluations move to Arch
 Platforms (Codex / Claude Code / local WorkBuddy, etc.) typically keep session logs locally. They can serve as **raw evidence** — letting another Agent analyze only user inputs, decision shifts, or failure paths. But chat logs **cannot substitute** for structured docs: docs read faster, have clearer boundaries, and suit team collaboration and version control better (consistent with Ch. IX "transcript has no authority").
 
 > Practical point: raw session logs are the "reference raw draft"; the four-state docs are the "authoritative truth for collaboration". Run both in parallel — keep raw evidence, but don't be held hostage by it.
+
+---
+
+### XV. Four-state Patrol Checklist & Active-context Lightening (new in v1.4)
+
+> **Source**: After v1.3 Ch. XIV made the Open/Decisions/Resolved/Archive lifecycle explicit, the BRF project space refactored its own `current.md` along the four-state model on 2026-08-14 (four-state view + archival of historical records). This "practice the advocated traceability first, then distill it into a generic method" exercise yielded two portable close-out disciplines — they pass the dual-track filter (domain-agnostic / no local-ops details / reusable by others) and enter this spec.
+
+#### 15.1 Four-state Patrol Checklist (mandatory at iteration close-out)
+
+At every iteration / project-phase close-out, self-check along Open→Decisions→Resolved→Archive. **All four states closed = the iteration is done**; any unclosed item must either be resolved this round or explicitly carried to the next (kept Open or annotated with Archive reason) — never "silently swallowed".
+
+| State | Self-check question | Close criterion |
+|-------|---------------------|-----------------|
+| **Open** | Are there still unclosed assumptions / risks / to-verify items? | All handled: moved to Decisions (decided), Resolved (verified), or explicitly carried to next round with a trace |
+| **Decisions** | Do all important decisions this round carry the four fields? | content + rationale + owner + impact scope complete |
+| **Resolved** | Are resolved issues recorded and regression-verifiable? | fix method + regression case / verifiable evidence persisted |
+| **Archive** | Do retired / superseded proposals keep "why retired"? | retirement reason + effective time annotated, not deleted |
+
+> Key point: the checklist is the "operationalized close-out" of the v1.3 four-state model. It turns "trace first, then analyze" from a principle into a mandatory tick-action at iteration end, preventing half-done close-outs where "the version shipped but Open still hangs a pile of unclear things".
+
+#### 15.2 Active-context Lightening (progressive-disclosure in practice)
+
+The four-state archival exercise yields a second discipline: active files keep only "current state + pointer"; historical records are archived with originals intact.
+
+- **Active files (e.g. `current.md`)**: keep only the current Open/Decisions/Resolved/Archive + pointers ("details in `PROJECT_GUIDANCE.md` Ch. X"), no piling of historical full text;
+- **Historical archival**: build timelines, iteration-candidate full text, historical to-dos move into `PROJECT_GUIDANCE.md` (or `handoffs/`), originals kept intact, only removed from the active view;
+- **Effect**: active files stay lean (new Agent focuses on the present), history stays traceable (consistent with v1.3 Archive "retire ≠ delete").
+
+> Link to v1.3: lightening is not "discarding history" but moving it from the "active sightline" to the "archive layer" — satisfying progressive disclosure (Layer 4 on demand) while holding the four-state traceability baseline.
+
+#### 15.3 Link to the publish flow (release gate)
+
+The four-state patrol checklist is the "release gate" of iteration close-out: before writing the public-spec text, run the 15.1 check once — Open has no leftovers, Decisions four fields complete, Resolved/Archive traceable — then proceed to dual-track Step 4 (write `handoffs/` text → bump README → push to GitHub with tag). This closes the loop between v1.3 "traceability" and v1.4 "close-out self-check", and is exactly how this spec's own v1.4 release was practiced.
