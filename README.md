@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.4-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.5-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
@@ -108,9 +108,9 @@ brief-relay-framework/
 
 ## 文档（Documentation）
 
-- **方法规范（中文 · 当前 v1.4）**：[简报接力.md](简报接力.md)
-- **Method Spec (English · current v1.4)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
-- **历史版本（v1.0 / v1.1 / v1.2 / v1.3）**：通过 git tag 锚定，[`git checkout v1.3`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
+- **方法规范（中文 · 当前 v1.5）**：[简报接力.md](简报接力.md)
+- **Method Spec (English · current v1.5)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
+- **历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4）**：通过 git tag 锚定，[`git checkout v1.4`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 

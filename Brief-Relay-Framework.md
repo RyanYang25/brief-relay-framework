@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.4
+# Brief Relay Framework (BRF) v1.5
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.4. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out (self-check Open→Decisions→Resolved→Archive, all four states closed before the iteration counts as done), and feeds back the "active-context lightening" discipline (active files keep only current state + pointers; historical records are archived with originals kept intact) — the framework practices its own advocated traceability first, then distills it into a generic method.
+> **Version note**: This is v1.5. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line.
 
 ---
 
@@ -601,3 +601,51 @@ The four-state archival exercise yields a second discipline: active files keep o
 #### 15.3 Link to the publish flow (release gate)
 
 The four-state patrol checklist is the "release gate" of iteration close-out: before writing the public-spec text, run the 15.1 check once — Open has no leftovers, Decisions four fields complete, Resolved/Archive traceable — then proceed to dual-track Step 4 (write `handoffs/` text → bump README → push to GitHub with tag). This closes the loop between v1.3 "traceability" and v1.4 "close-out self-check", and is exactly how this spec's own v1.4 release was practiced.
+
+---
+
+### XVI. Four-state Readiness Gate & Platform Entry Adapter (new in v1.5)
+
+> **Source**: 2026-08-17 GitHub competitive research (cursor-memory-bank 3,055★ / my-claude-code-setup 2,585★ / roo-code-memory-bank 1,677★ / RooFlow 1,232★ / memory-bank-mcp 916★ / BMAD-METHOD 51,966★ / OpenSpec 65,078★). After the BRF project space shipped the "Four-state Patrol Checklist" in v1.4, it studied the "IDE event auto-update + UMB manual fallback" of the Memory Bank family and the AGENTS.md/CLAUDE.md platform-entry conventions, and distilled two portable enhancements — both pass the dual-track filter (domain-agnostic / no local-ops details / reusable by others) and enter this spec.
+
+#### 16.1 Four-state Readiness Gate (machine-verifiable handoff)
+
+v1.4's "Four-state Patrol Checklist" is a manual tick-action. v1.5 upgrades it into a **machine-verifiable handoff readiness gate**: a lightweight validation script that, on save / close-out, automatically checks Open/Decisions/Resolved/Archive closure and emits a readable "readiness report" — turning "a human remembers to tick" into "a machine checks for you".
+
+- **Form**: a plain-file script in `project-context/tools/` (Shell / Python / PowerShell all fine), cross-platform readable and carried with the project (see v1.1 Ch. XII); bound to no IDE and not requiring a runtime — run it manually if you have none, run it one-click if you do.
+- **Gate logic** (BRF specifies *what to check* and *what to output*, not the language): parse the four-state markers in `current.md` and judge item-by-item:
+
+  | State | Gate check | Close criterion |
+  |-------|-----------|-----------------|
+  | **Open** | Are there still unclosed assumptions / risks / to-verify items? | All handled (moved to Decisions / Resolved, or explicitly carried to next round with a trace) |
+  | **Decisions** | Do this round's decisions carry the four fields? | content + rationale + owner + impact scope complete |
+  | **Resolved** | Do resolved items have a fix method + verifiable evidence? | fix method + regression case / evidence persisted |
+  | **Archive** | Do retired items keep "why retired"? | retirement reason + effective time annotated, not deleted |
+
+- **Output**: a "readiness report" — which states are closed, which have gaps, gaps located to the line — for use before publishing (echoing the 15.3 release gate) or at any checkpoint.
+- **Link to publish flow**: the 15.3 release gate upgrades from "manual patrol" to "manual or scripted gate" — the gate's "four states closed" output is one of the publish preconditions.
+
+> Key point: the gate is the "operational re-upgrade" of the v1.4 checklist, not a new dependency. BRF dictates no script language, only "what the gate checks + what it outputs"; the implementation is project's choice, following the plain-file + cross-platform-readable pattern of `tools/publish.ps1`.
+
+#### 16.2 Platform Entry Adapter (BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping)
+
+BRF's single entry is BRIEF (plain Markdown, platform-agnostic). But mainstream coding-Agent platforms (Cursor / Claude Code / Roo Code, etc.) auto-read `AGENTS.md` / `CLAUDE.md` as the project entry at session start. A BRF project that maintains only BRIEF misses these platforms' "auto-takeover" channel. The platform entry adapter fixes this — **without replacing BRIEF's authority, but adapting BRIEF to each platform's entry**.
+
+- **Single source of truth unchanged**: BRIEF remains the sole authoritative entry; `AGENTS.md` / `CLAUDE.md` are **derived views** (generated from BRIEF, not a second system).
+- **Bidirectional mapping spec** (pure Markdown, usable independently of BRF's internal context):
+
+  | BRIEF section | Maps to platform entry | Note |
+  |---------------|------------------------|------|
+  | Identity Snapshot (v1.2 13.1) | Platform entry top "Project Overview" | 30-second takeover card sinks as-is |
+  | File Organization + File Index (BRIEF II/IV) | "Project Structure / Key Files" section | Tells the platform Agent which files to read first |
+  | Session Recovery Protocol + Takeover Checklist (Ch. IX/XIII) | "Work Rules / Takeover Steps" section | Makes the platform Agent also follow the recovery protocol, not assume auto-sync |
+  | Current Status + Recent Decisions | "In-progress / Recent decisions" section (optional, refresh periodically) | Platform-side Agent also sees current progress |
+
+- **One-click produce / recover**: ship a script or documented steps in the project to generate `AGENTS.md` / `CLAUDE.md` from BRIEF (forward), and merge platform-side manual edits back into BRIEF (reverse, optional) — on recovery, BRIEF wins, avoiding dual-source drift.
+- **Does not violate the de-platform-binding red line**: the adapter is a "mapping layer", not a "replacement layer" — the core is still plain-Markdown BRIEF; the mapping rules themselves are platform-agnostic plain text that merely describe "how to dock with a platform's entry". It solves the pain of "BRF projects can also enjoy platform auto-takeover" rather than binding BRF to any platform.
+
+> Key point: `AGENTS.md` / `CLAUDE.md` are "platform-side BRIEF mirrors", not a second source of truth. BRIEF always wins; the adapter only translates and syncs.
+
+#### 16.3 Deliberately excluded: full IDE auto-sync hooks
+
+Competitors (the Memory Bank family) widely use "IDE event auto-update + UMB manual fallback" for context relay. BRF **does not bring "real-time listening to session events to auto-rewrite BRIEF" into the public spec** — reasons: ① listening to platform session events needs platform-specific hooks, violating BRF's "de-platform-binding" first constraint; ② single-platform hooks would work but bind BRF to that platform, contradicting the meta-framework positioning. BRF already has the "session recovery protocol + incremental persistence + takeover checklist" trio against interrupt / loss; full auto-sync is a nice-to-have, not a must. This direction stays as a **project-space experiment**, not in the public spec; if pursued later, prefer a "platform-agnostic relay protocol" over a "platform-specific hook".
