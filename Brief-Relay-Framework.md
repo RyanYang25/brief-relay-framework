@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.5
+# Brief Relay Framework (BRF) v1.6
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.5. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line.
+> **Version note**: This is v1.5. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified).
 
 ---
 
@@ -91,6 +91,7 @@ Each context file places an `<!-- @context -->` HTML comment block at the top, d
 | `update_trigger` | Under what condition it must be updated (e.g. "after any status/decision/file-structure change") |
 | `upstream` | Upstream dependency (which info this file depends on, e.g. BRIEF.md depends on current.md's status) |
 | `downstream` | **Relay baton pointer** — after this file updates, who moves next (e.g. current.md → B01 live-course-notes/, standards.md) |
+| `last_updated` | Date of this file's most recent update (`YYYY-MM-DD`), enabling the recovery protocol's 9.1 timestamp comparison to be machine-checked (new in v1.6) |
 
 **BRIEF.md (@context-root) example**:
 
@@ -100,6 +101,7 @@ role: Single project entry point + evolution engine
 produced_by: Update SOP (auto/manual trigger)
 consumed_by: All Agents and human successors, must read at the start of every session
 update_trigger: After any status/decision/file-structure change
+last_updated: YYYY-MM-DD
 upstream: context/current.md (active status), context/standards.md (constraints)
 downstream: context/current.md → context/standards.md → {meeting-notes dir}/
 -->
@@ -113,6 +115,7 @@ role: Current active context (activeContext)
 produced_by: Update SOP scenario 2/3 auto-maintained
 consumed_by: All Agents must read at the start of every session
 update_trigger: After task-status change / new decision / blocker discovered
+last_updated: YYYY-MM-DD
 upstream: BRIEF.md (scope and constraints), standards.md (how-to)
 downstream: {meeting-notes dir}/, standards.md (pitfall deposits), PROJECT_GUIDANCE.md (important decisions)
 -->
@@ -400,7 +403,7 @@ When asked to work on the project:
 Any Agent **re-taking over** this project (whether a new session, cross-platform switch, or post-interrupt recovery), the first step **must**:
 
 1. Read `BRIEF.md` (including the @context-root block) and `context/current.md` (including the @context block);
-2. Compare the last-updated times of both, confirm status consistency;
+2. Compare the last-updated times of both, confirm status consistency (v1.6: the contract-header `last_updated` field makes this comparison machine-checkable, see the 16.1 gate's timestamp-consistency check);
 3. If inconsistency is found, or there is an unclosed in-flight task, first **reconcile** (confirm with the user if necessary), then start new work;
 4. Do not assume "the last session ended normally" — treat file content as the sole authority.
 
@@ -489,6 +492,15 @@ Every BRF project should keep a "cross-platform deployment checklist" in `standa
 | Needs fresh-environment install | Runtime deps (community skills, Python venv, platform plugins, etc.) not in the project | Annotate the **install method** (command / link); new Agent verifies item-by-item and installs on demand |
 
 > This checklist is the new Agent's "health check" on takeover: first confirm the "carried" items are complete, then handle the "needs install" items — avoiding a silent missing dependency that breaks the project.
+
+#### 12.4 File Encoding Convention (new in v1.6)
+
+> **Starting point**: BRF's "portability-first constraint" requires documents to be cross-platform readable. Real-world testing found a common blind spot: native Windows PowerShell etc. decode UTF-8-without-BOM Chinese files using the system ANSI/GBK code page by default, producing mojibake — the same file renders fine in VS Code / GitHub / macOS / Linux, yet is "unreadable" in a native CLI. 12.1 rules out "hardcoded usernames in paths"; this section rules out "inconsistent file encoding".
+
+- **Data files uniformly UTF-8 without BOM**: all `.md` and other data files use UTF-8 without BOM (safest cross-platform — GitHub / VS Code / macOS / Linux all recognize it by default).
+- **Native CLIs declare encoding explicitly**: when reading UTF-8-without-BOM Chinese files in a native environment that defaults to non-UTF-8 (e.g. Windows PowerShell), always use `Get-Content -Encoding UTF8` explicitly, or the Chinese text turns to mojibake.
+- **Scripts with Chinese literals need UTF-8 BOM**: Windows PowerShell 5.1 parses `.ps1` files using the ANSI code page when the file has no BOM, garbling Chinese literals — script files must be UTF-8 with BOM, or use English-only output internally.
+- **Checklist addition**: the 12.3 deployment checklist can add a line "Carried with project: encoding convention (UTF-8 no BOM / explicit encoding in native CLI)" for the new Agent to verify on takeover.
 
 ### XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist (new in v1.2)
 
@@ -621,11 +633,14 @@ v1.4's "Four-state Patrol Checklist" is a manual tick-action. v1.5 upgrades it i
   | **Decisions** | Do this round's decisions carry the four fields? | content + rationale + owner + impact scope complete |
   | **Resolved** | Do resolved items have a fix method + verifiable evidence? | fix method + regression case / evidence persisted |
   | **Archive** | Do retired items keep "why retired"? | retirement reason + effective time annotated, not deleted |
+  | **Timestamp (v1.6)** | Do BRIEF and current's contract-header `last_updated` match? | both carry explicit `last_updated` and the values match (step 1 of the 9.1 recovery protocol becomes machine-checkable) |
 
 - **Output**: a "readiness report" — which states are closed, which have gaps, gaps located to the line — for use before publishing (echoing the 15.3 release gate) or at any checkpoint.
 - **Link to publish flow**: the 15.3 release gate upgrades from "manual patrol" to "manual or scripted gate" — the gate's "four states closed" output is one of the publish preconditions.
 
 > Key point: the gate is the "operational re-upgrade" of the v1.4 checklist, not a new dependency. BRF dictates no script language, only "what the gate checks + what it outputs"; the implementation is project's choice, following the plain-file + cross-platform-readable pattern of `tools/publish.ps1`.
+
+- **Minimal reference implementation (v1.6)**: the BRF project space itself ships `tools/four-state-gate.ps1` (PowerShell, plain file + cross-platform readable) — it parses `current.md`'s four-state markers + compares contract-header `last_updated` + checks file-encoding health, and emits a "readiness report"; verified on 2026-08-31. New projects may follow this implementation or choose their own language (Shell / Python / PowerShell all fine); BRF only dictates "what to check + what to output", not the language.
 
 #### 16.2 Platform Entry Adapter (BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping)
 
