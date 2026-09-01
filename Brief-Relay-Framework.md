@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.6
+# Brief Relay Framework (BRF) v1.7
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.5. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified).
+> **Version note**: This is v1.7. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line.
 
 ---
 
@@ -634,13 +634,14 @@ v1.4's "Four-state Patrol Checklist" is a manual tick-action. v1.5 upgrades it i
   | **Resolved** | Do resolved items have a fix method + verifiable evidence? | fix method + regression case / evidence persisted |
   | **Archive** | Do retired items keep "why retired"? | retirement reason + effective time annotated, not deleted |
   | **Timestamp (v1.6)** | Do BRIEF and current's contract-header `last_updated` match? | both carry explicit `last_updated` and the values match (step 1 of the 9.1 recovery protocol becomes machine-checkable) |
+  | **Document-health smells (v1.7)** | Any dangling links / leftover placeholders / missing required fields / open UNKNOWNs / oversized active file? (see 17.5) | ERROR-class cleared, WARN-class explicitly addressed (ERROR blocks; WARN only advises) |
 
 - **Output**: a "readiness report" — which states are closed, which have gaps, gaps located to the line — for use before publishing (echoing the 15.3 release gate) or at any checkpoint.
 - **Link to publish flow**: the 15.3 release gate upgrades from "manual patrol" to "manual or scripted gate" — the gate's "four states closed" output is one of the publish preconditions.
 
 > Key point: the gate is the "operational re-upgrade" of the v1.4 checklist, not a new dependency. BRF dictates no script language, only "what the gate checks + what it outputs"; the implementation is project's choice, following the plain-file + cross-platform-readable pattern of `tools/publish.ps1`.
 
-- **Minimal reference implementation (v1.6)**: the BRF project space itself ships `tools/four-state-gate.ps1` (PowerShell, plain file + cross-platform readable) — it parses `current.md`'s four-state markers + compares contract-header `last_updated` + checks file-encoding health, and emits a "readiness report"; verified on 2026-08-31. New projects may follow this implementation or choose their own language (Shell / Python / PowerShell all fine); BRF only dictates "what to check + what to output", not the language.
+- **Minimal reference implementation (v1.6)**: the BRF project space itself ships `tools/four-state-gate.ps1` (PowerShell, plain file + cross-platform readable) — it parses `current.md`'s four-state markers + compares contract-header `last_updated` + checks file-encoding health, and emits a "readiness report"; verified on 2026-08-31; **v1.7 adds the document-health smell family (see 17.5: dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / active-file oversize, split ERROR/WARN), verified on 2026-09-01**. New projects may follow this implementation or choose their own language (Shell / Python / PowerShell all fine); BRF only dictates "what to check + what to output", not the language.
 
 #### 16.2 Platform Entry Adapter (BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping)
 
@@ -664,3 +665,84 @@ BRF's single entry is BRIEF (plain Markdown, platform-agnostic). But mainstream 
 #### 16.3 Deliberately excluded: full IDE auto-sync hooks
 
 Competitors (the Memory Bank family) widely use "IDE event auto-update + UMB manual fallback" for context relay. BRF **does not bring "real-time listening to session events to auto-rewrite BRIEF" into the public spec** — reasons: ① listening to platform session events needs platform-specific hooks, violating BRF's "de-platform-binding" first constraint; ② single-platform hooks would work but bind BRF to that platform, contradicting the meta-framework positioning. BRF already has the "session recovery protocol + incremental persistence + takeover checklist" trio against interrupt / loss; full auto-sync is a nice-to-have, not a must. This direction stays as a **project-space experiment**, not in the public spec; if pursued later, prefer a "platform-agnostic relay protocol" over a "platform-specific hook".
+
+---
+
+### XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions & Capacity Threshold (new in v1.7)
+
+> **Source**: a 2026-09-01 GitHub external benchmark (agent-handoff-skill's validation/risks, waggle's defect taxonomy for "bare-path handoff", katalint's handoff-doc linter, etc.; the BRF project space keeps the full research memo). The v1.5 gate and v1.6 timestamp/encoding made handoff ***formally* machine-checkable**, but the benchmark uncovered a layer not yet covered: a filled four-state table and matching timestamps only prove "document form is complete" — they do not prove "the content deserves the next Agent's trust". A conclusion may be a mere unverified claim, an assumption may travel downstream as if confirmed, and the handoff may carry dead links and placeholders. This chapter adds the layer of "**trustworthy content**": four sections plus a gate hook, all passing the dual-track filter (domain-agnostic / no local-ops details / reusable by others), all delivered in pure Markdown and generic checks, with no runtime or platform dependency.
+
+#### 17.1 Validation Statement (a "done" must carry "how verified / what is not")
+
+Problem: a handoff says "done / fixed / shipped", yet the next Agent cannot tell whether it was truly verified or merely claimed. Rule: **every completion-class conclusion carries a lightweight validation statement** with four fixed parts; a missing part counts as "verification incomplete":
+
+| Part | What to write |
+|------|---------------|
+| **Conclusion** | What was done and the result (one falsifiable sentence) |
+| **How verified** | How it was verified — command / test / re-read / manual check; must be reproducible |
+| **Result** | What was actually observed — pass / fail / key numbers / evidence pointer |
+| **Not verified** | What was not verified, why, risk and suggestion (explicitly leave blank; write "none" if so) |
+
+Template (pure Markdown, paste directly into current / the relay baton):
+
+> Validation statement
+> · Conclusion: (what was done, result)
+> · How verified: (command / test / re-read path; reproducible)
+> · Result: (actual observation: pass / fail / numbers / evidence pointer)
+> · Not verified: (what wasn't, risk, suggestion; "none" if nothing)
+
+> Key point: the validation statement separates "claim" from "evidence". **A not-verified item is not a deduction — hiding it is.** Writing "what wasn't verified" explicitly is what stops the next Agent from treating the unverified as established.
+
+#### 17.2 UNKNOWN / To-confirm Ledger (assumptions must not travel as facts)
+
+The most dangerous thing in a relay chain is not "not knowing" but passing the previous baton's **assumption** downstream as a **confirmed fact**. Rule: keep an explicit UNKNOWN ledger in the active context (`current.md` / relay baton), registering item-by-item every assumption, unknown, decision-to-make, and pending external acknowledgement:
+
+| Item | Type | Status | Basis / next step | Owner |
+|------|------|--------|-------------------|-------|
+| (what to confirm) | assumption / unknown / to-decide / pending-reply | to-confirm / confirmed / ruled-out | basis or confirming action | who |
+
+Three hard rules: ① a key fact written into the body whose source is **inference rather than confirmation** must also enter the UNKNOWN ledger; ② before closure, body conclusions use "tentative / to-confirm" wording, never stated as settled; ③ at iteration close-out handle each row — flip to "confirmed" (add basis) or "ruled-out" (add reason) or explicitly carry it to the next round by name — **no "to-confirm" row may silently roll into the next baton**.
+
+> Relation to the four states: UNKNOWN is orthogonal to Open — Open tracks "is the item closed", UNKNOWN tracks "is the fact confirmed". An item can be Open-closed while one of its data points remains an unconfirmed assumption; both must be explicit.
+
+#### 17.3 Five Handoff-quality Questions (the quality gate of one hand-off action)
+
+v1.4 §15.1 is a four-state patrol at "iteration close-out"; this section is five questions run **before each time a handoff artifact is passed to the next baton (human or Agent)**, targeting "can this be trusted and understood":
+
+| # | Ask yourself | Typical failure |
+|---|--------------|-----------------|
+| 1 **Attribution** | Can every key conclusion be traced to "who produced it, on what basis"? | sourceless assertions, "reportedly / probably" |
+| 2 **Fit & density** | Does the level of detail match the takeover scenario? | dumping the whole text to a local-only taker; or one sentence where detail is due |
+| 3 **Freshness** | Any stale content? Are timestamps / pointers still valid? | links to moved/deleted files, outdated state |
+| 4 **Next step** | Are the next action and owner clear? | only "keep going", without saying what or who |
+| 5 **Reachability** | Is it readable off this machine? | private absolute paths, private deps, links openable only on this machine |
+
+> Division of labor with 15.1: the four-state patrol tracks "is the project state closed"; the five questions track "is this handoff trustworthy and easy to take". The former runs per project phase, the latter per hand-off action; they stack.
+
+#### 17.4 Active-context Capacity Threshold (quantifying 15.2 lightening)
+
+v1.4 §15.2 asks that "active files keep only current state + pointer", but relies on self-discipline. This section gives an actionable **advisory line** (suggested default; a project may customize it in `standards.md` or the contract header):
+
+- **Threshold**: a single active-context file (`current.md` / relay baton) beyond **~500 lines or 32 KB** triggers an "archive & split" signal (WARN, not a hard error).
+- **Action when triggered**: historical full text (full build timelines, closed iteration candidates, stale to-dos) moves to the archive layer (`PROJECT_GUIDANCE.md` / Archive); the active file keeps only current state + pointers — turning 15.2 from discipline into "warn on overflow".
+- **Why only warn, not auto-split**: auto-chunking / index databases create cross-file stitching burden and runtime dependencies; BRF only reminds a human to archive on overflow, holding the pure-Markdown, zero-dependency red line. The numbers are a starting point to calibrate per project (the calibration itself goes into the UNKNOWN ledger, see 17.2).
+
+#### 17.5 Gate hook: the document-health smell family (candidate D)
+
+Making 17.1–17.4 machine-checkable: beyond four-state / timestamp / encoding, the 16.1 gate gains a "handoff document-health smell" family that scans active-context files:
+
+| smell | What it checks | Level | Maps to |
+|-------|----------------|-------|---------|
+| **Dangling link** | Does a Markdown relative link / relative path point to a file that actually exists (excluding http(s), #anchors, mailto)? | ERROR | 17.3-3 Freshness |
+| **Leftover placeholder** | Unclean placeholders: TODO / TBD / FIXME / XXX / 待补充 / 待定 / 待填写 | WARN | 17.1 (state unverified explicitly, don't leave an empty placeholder) |
+| **Missing required field** | Are contract-header required fields (role / last_updated, etc.) and decision fields empty? | ERROR | 16.1 / 17.1 |
+| **Open UNKNOWN** | Count of "to-confirm" rows in the UNKNOWN ledger (must be addressed by name at close-out) | WARN | 17.2 |
+| **Active file oversize** | Does the active file's lines / KB exceed the 17.4 threshold? | WARN | 17.4 |
+
+Two levels: **ERROR must be cleared to pass the release gate** (dangling links / missing required fields directly mislead the next Agent); **WARN only advises, never blocks** (placeholders / UNKNOWN count / oversize are left to human judgment on whether to handle this round), so noise does not drown the signal. For the minimal implementation see 16.1's `four-state-gate.ps1` (v1.7 includes this family; plain file, zero dependency).
+
+#### 17.6 Deliberately excluded: take the ideas, not the heavy implementations
+
+Present in the external benchmark but **not** brought into the public spec: token-budget scheduling and MCP read-telemetry, vector memory stores (embedding / retrieval), multi-Agent orchestration code frameworks, JSON manifests and file fingerprints, auto-chunking and all installers / scaffolds — they either bind to a specific runtime/platform or turn a pure-Markdown method into a code system that must be deployed, violating the first constraint of "pure Markdown, zero external dependency, de-platform-binding". BRF takes only the underlying ideas (freshness, attribution, capacity, explicit unknowns) and lands them with plain-text structures and one lightweight check.
+
+> Chapter point: v1.6 made handoff "***formally* verifiable**", v1.7 makes it "**content-trustworthy**" — the validation statement supplies evidence, the UNKNOWN ledger quarantines assumptions, the five questions govern each hand-off's quality, the capacity threshold protects takeover density, and document smells make all of the above machine-checkable; no new platform or runtime dependency is added.
