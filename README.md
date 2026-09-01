@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.7-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.8-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
@@ -47,7 +47,7 @@ Agent 上下文接力 / 记忆是活跃方向，BRF 与三类常见路线刻意�
 | 向量记忆 / 知识图谱 | embedding 检索、数据库、运行时服务 | 零运行时、零外部依赖，用目录结构 + 契约头 + 指针代替向量检索 |
 | 规格驱动 / 多 Agent 框架 | 重型流程模板或代码编排框架 | 是轻量方法论而非框架：不规定开发流程，只解决"上下文如何在 Agent / 平台 / 会话间不丢、且可被信任" |
 
-**BRF 的生态位**：领域无关、纯 Markdown、平台中立、零依赖——一套"文件怎么组织、交接怎么可信、状态怎么可验证"的约定，可单独使用，也可作为上述任何重型方案的底层上下文层。v1.7 新增「交接可信化」（验证声明 / UNKNOWN 账本 / 交接质量五问 / 文档健康门禁）。
+**BRF 的生态位**：领域无关、纯 Markdown、平台中立、零依赖——一套"文件怎么组织、交接怎么可信、状态怎么可验证、流程怎么按场景弹性"的约定，可单独使用，也可作为上述任何重型方案的底层上下文层。v1.7 新增「交接可信化」（验证声明 / UNKNOWN 账本 / 交接质量五问 / 文档健康门禁）；v1.8 新增「流程弹性」（接手意图分类 / 任务规模分级 / standards 宪法对齐），让大任务不丢深度、小任务不被流程压重。
 
 ---
 
@@ -61,6 +61,7 @@ Agent 上下文接力 / 记忆是活跃方向，BRF 与三类常见路线刻意�
 | 4 | **增量落盘** | 每步即落盘，上下文随项目生长，不依赖"中断自动同步" |
 | 5 | **开箱模板** | 中 / 英文 starter，复制即用，含 BRIEF / current / standards 三件套 |
 | 6 | **交接可信化（v1.7）** | 验证声明 + UNKNOWN 账本 + 交接质量五问 + 文档健康门禁，让"做完"可验证、假设不被当事实下传 |
+| 7 | **流程弹性（v1.8）** | 接手意图分类 + 任务规模分级 + 接手深度路由 + standards 宪法对齐——大任务不丢深度、小任务不被流程压重 |
 
 ---
 
@@ -116,16 +117,16 @@ brief-relay-framework/
 └── 方法规范（权威交付物，根目录·去版本后缀）
     ├── 简报接力.md                          ← 方法规范（中文，当前版）
     └── Brief-Relay-Framework.md            ← Method Spec (English, current)
-> 历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6）已通过 git tag 锚定，不在根目录堆副本；`git checkout v1.6` 可取回。
+> 历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6 / v1.7）已通过 git tag 锚定，不在根目录堆副本；`git checkout v1.7` 可取回。
 ```
 
 ---
 
 ## 文档（Documentation）
 
-- **方法规范（中文 · 当前 v1.7）**：[简报接力.md](简报接力.md)
-- **Method Spec (English · current v1.7)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
-- **历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6）**：通过 git tag 锚定，[`git checkout v1.6`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
+- **方法规范（中文 · 当前 v1.8）**：[简报接力.md](简报接力.md)
+- **Method Spec (English · current v1.8)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
+- **历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6 / v1.7）**：通过 git tag 锚定，[`git checkout v1.7`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 
