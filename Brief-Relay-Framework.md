@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.8
+# Brief Relay Framework (BRF) v1.9
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.7. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations.
+> **Version note**: This is v1.9. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations. v1.9 adds "XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline" (distilled from a real test where **three Agent sessions developed the same project in parallel**, external to this project): v1.0→v1.8 carried a **never-stated assumption — at any given moment only one writer holds the baton**; under parallel Agents that assumption breaks, with no fallback clause anywhere in the spec. v1.9 makes it explicit and supplies the constraints — A physical copy isolation (one independent working copy + branch per Agent, the primary copy keeps the integration line); B single-writer shared relay docs (BRIEF / current / changelog / standards are editable only by the mainline owner; working copies write to their own dedicated handoff file); C claim-by-declaration (sync first → declare the files you will touch → then act, **explicitly stating that this mechanism provides no real-time mutual exclusion**); D explicit merge and conflict resolution (overwriting another's changes wholesale is forbidden); E identifier uniqueness (a persona name alone may not serve as attribution — use "role@project" or the copy identifier); F structural decoupling before process coordination (split hot files *before* starting parallel work); G size adaptation (2–3 Agents use the lightweight mode; only at ≥5 with stable demand upgrade to domain split / queue / board); 19.9 deliberately excludes port numbers / IDE exclusion configs / auto-sync hooks / real-time file locks / multi-Agent orchestration frameworks, all of which violate the plain-Markdown zero-dependency and de-platform-binding red lines.
 
 ---
 
@@ -813,3 +813,100 @@ Principle: process depth follows **task size**, not "whether the project is impo
 From the benchmark, "task-size auto-scorers / platform auto-tiering hooks / multi-expert review scripts / auto task-decomposition toolchains" — they either introduce runtime dependencies, bind to a platform, or belong to Direction ③ (artifact decomposition chain). BRF **does not adopt** them: tiering is judged and self-declared by the taker (human or Agent) per this chapter's rules, and the gate only emits a light WARN reminder. Landing is plain Markdown + generic checks — zero dependency, de-platform-bound.
 
 > Chapter point: BRF moves from "one pipeline fits all" to "tiered takeover by intent and size" — intent classification decides how much to read (18.1), size tiering decides how deep to go (18.2), the routing table gives default combinations (18.3), and the standards constitution keeps elasticity from drifting (18.4); the recovery protocol remains the default full path, tiering is a labour-saving option that does not relax persistence and traceability discipline; plain Markdown, zero dependency.
+
+### XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline (new in v1.9)
+
+> **Source**: a real test where **three Agent sessions worked the same project in parallel** (external to this project), producing three classes of genuine failure — ① **silent file-level overwrite**: two Agents ran "read → modify → write" on the same file, the later writer silently overwrote the earlier one with no warning; ② **relay docs written concurrently**: both sides alternately wrote `current` / `changelog`, so versions contradicted each other, entries cancelled each other out, and attribution scrambled — at one point "my commit swept in the other side's uncommitted changes", alongside commits of unknown origin; ③ **runtime interference**: parallel service starts / writes to the same data file, fighting over ports and data. Distilled and de-duplicated into this spec through the dual-track filter (domain-agnostic / no local-ops details / reusable by others).
+
+The recovery protocol (9.1) and the update SOP (Ch. VII) carry a **never-stated assumption: at any given moment, only one writer holds the baton**. Under single-Agent sequential relay that assumption holds naturally; once several Agent sessions work the same project in parallel, it breaks — and **no clause in the spec covered the gap**.
+
+What v1.9 adds is precisely the explicit statement of that assumption. The problem this chapter solves is not "how to orchestrate multiple Agents" — that is an orchestration framework's job — but: **how to keep relay docs and work artifacts from being destroyed by each other while running in parallel**.
+
+#### 19.1 Applicability and prerequisites
+
+| Scenario | Do you need this chapter? | Notes |
+|----------|---------------------------|-------|
+| Single Agent, sequential relay (cross-session / cross-platform) | **No** | The existing recovery protocol is enough |
+| Multiple Agents in **read-only** review (critique / benchmarking / parallel research) | Partly | Only 19.3 single-writer applies (read-only anyway) |
+| **Two or more Agents editing the same project in parallel** | **Yes** | All hard rules in this chapter apply |
+
+Two prerequisites:
+
+1. The project is under **version control**, or uses any tool offering "multiple copies + version snapshots + explicit merge". For an unversioned project, fix that first — otherwise nothing here can land.
+2. Participants agree on who is the **mainline owner** — the only person with the right to merge into the mainline.
+
+> Relationship to existing chapters: Ch. XVIII "Process Flexibility" governs how **one** Agent adjusts takeover depth by intent and size; this chapter governs **isolation and mutual exclusion across several** Agents. They complement rather than overlap: first ask how many are working in parallel (this chapter), then how deep each should go (Ch. XVIII).
+
+#### 19.2 Physical copy isolation
+
+**Principle (mandatory)**: each Agent uses an **independent working copy + independent branch**; never share one working directory. The primary copy keeps the **integration line**. A branch may be checked out by only one working copy at a time.
+
+**Replaceable implementation example (using one version-control tool; not a binding)**: create one working copy per Agent and branch off (`git worktree add <path> -b <branch>`). Working copies may live **inside the project** (e.g. `.worktrees/<id>/`) and be added to version-control ignore, so parent directories stay clean.
+
+> Any tool providing "multiple copies + version snapshots + explicit merge" can carry this chapter; **this mechanism must not be bound to a specific tool**, or it violates BRF's de-platform-binding red line.
+
+#### 19.3 Single-writer principle for shared relay docs
+
+`BRIEF` / `current` / `changelog` / `standards` are **single-writer files** — at any moment only the mainline owner may modify them.
+
+- Working copies are **forbidden** to touch these four directly; each Agent writes its output into **its own dedicated handoff file** (e.g. `handoffs/pending-<id>.md`), which the mainline owner folds in after merging.
+- Rationale: these four files are the project's **shared consensus view**. Any unilateral edit by a copy turns into a *semantic* conflict at merge time, not a textual one — a tool can merge lines, but it cannot decide which of two contradicted versions counts.
+
+> This is also the engineering argument behind Ch. I's "BRIEF as the single entry authority": once the consensus view is double-written, it stops being the authoritative source and every later taker is left guessing which copy to trust.
+
+#### 19.4 Claim-by-declaration (lightweight exclusion) and its limits
+
+Three hard rules:
+
+1. **Claim-by-declaration**: before starting, write into your handoff file which files this round will touch;
+2. **One file, one owner**: if the target is already claimed by someone else, do something else or talk first — never write over it;
+3. **Merge frequently**: make claims and artifacts visible early instead of batching everything into one final merge.
+
+Standard action order: **sync with mainline → declare the files you will touch → then act**.
+
+> **The limit must be stated explicitly**: this mechanism provides **no real-time mutual exclusion**. Declarations are asynchronous and human-speed — two Agents can absolutely claim the same file in the same minute. It pushes conflicts from "inevitable" down to "occasional"; it does **not** push them to "zero". That is why 19.5 is mandatory and merge discipline cannot be skipped just because a claim was filed.
+
+#### 19.5 Explicit merge and conflict resolution
+
+- **Small commits + frequent merges**: shorten the drift window between a copy and the mainline.
+- **Resolve conflicts explicitly**: overwriting another side's changes wholesale ("mine wins") is **forbidden** — it creates a *silent rollback* (their work disappears and nobody notices).
+- **Recheck before committing**: run the "look at status + look at the diff" pair (`git status` / `git diff`) to confirm this commit does **not sweep in someone else's uncommitted changes**. In the source test, "my commit carried their changes" was exactly the result of skipping this step.
+- **Runtime isolation**: when starting services or writing data files in parallel, give each copy a **different port / independent data directory**. This section gives the principle only; concrete values are the adopter's ops detail and do not belong in this spec.
+
+#### 19.6 Identifier uniqueness: a persona name is not attribution
+
+Observed failure: the same persona name was shared by sessions of two different projects, so the task assignment table **lost all discriminative power** — two rows carried the same name, making it impossible to tell who was responsible for what.
+
+Rule: attribution identifiers **must be unique**. Use a composite such as "**role@project**" or the "**working-copy identifier**"; **never use a persona name alone** (persona names collide across products and sessions).
+
+#### 19.7 Structural decoupling before process coordination
+
+The root cause of conflicts is usually "several Agents need to edit **the same large file**", not "the allocation process isn't smart enough".
+
+Preferred action: **split hot files before starting parallel work** (by domain, by stage), so parallelism becomes writes to non-overlapping files.
+Anti-pattern: leaving files unsplit while introducing a message bus / central queue to coordinate writes — complexity rises, conflict volume does not fall.
+
+Rule of thumb: **conflicts you can remove with structural decoupling should never be managed with process.**
+
+#### 19.8 Size adaptation and upgrade conditions
+
+| Parallel size | Recommended mode |
+|---------------|------------------|
+| Single Agent (sequential relay) | Existing recovery protocol; this chapter **not needed** |
+| **2–3 Agents + ad-hoc demand** | **Lightweight mode**: whoever is free takes it + this chapter's hard rules (19.2 / 19.3 / 19.4); **no** domain split / routing / central board |
+| **≥5 Agents / stable demand / dedicated roles** | May upgrade to **domain split + queue routing + board** |
+
+> **Anti-pattern warning**: introducing "category routing + a central board" at 2–3 Agent scale costs more than it returns. The trigger for upgrading is **scale and demand stability**, not "wanting to look more rigorous".
+
+#### 19.9 Deliberately excluded: exclusion is discipline, not a platform service
+
+The following are **not adopted** by this spec:
+
+1. Concrete tool and platform configuration — port numbers, one particular IDE's file-exclusion settings, auto-sync hooks, etc., which violate BRF's de-platform-binding red line;
+2. A specific project's Agent roster and persona names — not generalisable;
+3. Real-time file locks / distributed mutual-exclusion primitives / multi-Agent message buses / orchestration frameworks — they pull in runtime and external dependencies, violating the plain-Markdown zero-dependency red line;
+4. Central boards and category routing — meaningful only at ≥5 Agents (see 19.8); at lightweight scale they are an anti-pattern, mentioned **only as an upgrade condition**, never as a recommended practice.
+
+What this chapter lands is **four disciplines** (isolate · single-writer · declare · merge explicitly) plus **one size-adaptation table**, all realised with plain Markdown and ordinary version-control capability. Compliance rests on participants' self-discipline and human review, not on any platform service.
+
+> Chapter point: BRF moves from "assuming a single writer" to "stating parallel constraints explicitly" — 19.2 physical copy isolation, 19.3 single-writer shared docs, 19.4 claim-by-declaration (**including its inability to provide real-time exclusion**), 19.5 explicit merge and conflict resolution, 19.6 identifier uniqueness, 19.7 structural decoupling before process coordination, 19.8 size adaptation and upgrade conditions. What is filled is not "multi-Agent orchestration capability" but "mutual-exclusion discipline under parallelism"; zero dependency, no platform binding.
