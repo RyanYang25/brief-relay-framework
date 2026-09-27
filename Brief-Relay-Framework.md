@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.9
+# Brief Relay Framework (BRF) v1.10
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.9. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations. v1.9 adds "XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline" (distilled from a real test where **three Agent sessions developed the same project in parallel**, external to this project): v1.0→v1.8 carried a **never-stated assumption — at any given moment only one writer holds the baton**; under parallel Agents that assumption breaks, with no fallback clause anywhere in the spec. v1.9 makes it explicit and supplies the constraints — A physical copy isolation (one independent working copy + branch per Agent, the primary copy keeps the integration line); B single-writer shared relay docs (BRIEF / current / changelog / standards are editable only by the mainline owner; working copies write to their own dedicated handoff file); C claim-by-declaration (sync first → declare the files you will touch → then act, **explicitly stating that this mechanism provides no real-time mutual exclusion**); D explicit merge and conflict resolution (overwriting another's changes wholesale is forbidden); E identifier uniqueness (a persona name alone may not serve as attribution — use "role@project" or the copy identifier); F structural decoupling before process coordination (split hot files *before* starting parallel work); G size adaptation (2–3 Agents use the lightweight mode; only at ≥5 with stable demand upgrade to domain split / queue / board); 19.9 deliberately excludes port numbers / IDE exclusion configs / auto-sync hooks / real-time file locks / multi-Agent orchestration frameworks, all of which violate the plain-Markdown zero-dependency and de-platform-binding red lines.
+> **Version note**: This is v1.10. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations. v1.9 adds "XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline" (distilled from a real test where **three Agent sessions developed the same project in parallel**, external to this project): v1.0→v1.8 carried a **never-stated assumption — at any given moment only one writer holds the baton**; under parallel Agents that assumption breaks, with no fallback clause anywhere in the spec. v1.9 makes it explicit and supplies the constraints — A physical copy isolation (one independent working copy + branch per Agent, the primary copy keeps the integration line); B single-writer shared relay docs (BRIEF / current / changelog / standards are editable only by the mainline owner; working copies write to their own dedicated handoff file); C claim-by-declaration (sync first → declare the files you will touch → then act, **explicitly stating that this mechanism provides no real-time mutual exclusion**); D explicit merge and conflict resolution (overwriting another's changes wholesale is forbidden); E identifier uniqueness (a persona name alone may not serve as attribution — use "role@project" or the copy identifier); F structural decoupling before process coordination (split hot files *before* starting parallel work); G size adaptation (2–3 Agents use the lightweight mode; only at ≥5 with stable demand upgrade to domain split / queue / board); 19.9 deliberately excludes port numbers / IDE exclusion configs / auto-sync hooks / real-time file locks / multi-Agent orchestration frameworks, all of which violate the plain-Markdown zero-dependency and de-platform-binding red lines. v1.10 adds "XX. Rule-as-Asset Mechanism: Writing & Lifecycle of Executable Rule Files" (from a requirement deposited by a downstream adopter external to this project): v1.0→v1.9 answered "how context relays between Agents", but never treated "how the operating rules themselves should be written to be reliably executable by an Agent" as a first-class citizen — the writing standard, the ambiguity exit, and the self-iteration path were blank. v1.10 fills this gap: A Rule explicitness (operating judgements written into a plaintext rule file in the working directory, not left in a human's head or session history); B Five executable elements (input / decision criteria / output location / naming convention / fallback exit); C Mandatory fallback exit (a rule must designate a legitimate landing spot for uncovered cases and expressly forbid forced categorisation, complementing the 17.2 UNKNOWN ledger — 17.2 covers the information layer "is this fact confirmed", this mechanism covers the operational layer "where does an ambiguous item go"); D Rule self-iteration (write back edge cases, version the rules, recognise rule-rot signals); E Rule-vs-state boundary; F Scale fit (one-off tasks need no rule-as-asset); 20.9 deliberately excludes concrete taxonomies/directory names / specific sources and channels / an adopter's internal structure / slogan-style branding nouns.
 
 ---
 
@@ -910,3 +910,110 @@ The following are **not adopted** by this spec:
 What this chapter lands is **four disciplines** (isolate · single-writer · declare · merge explicitly) plus **one size-adaptation table**, all realised with plain Markdown and ordinary version-control capability. Compliance rests on participants' self-discipline and human review, not on any platform service.
 
 > Chapter point: BRF moves from "assuming a single writer" to "stating parallel constraints explicitly" — 19.2 physical copy isolation, 19.3 single-writer shared docs, 19.4 claim-by-declaration (**including its inability to provide real-time exclusion**), 19.5 explicit merge and conflict resolution, 19.6 identifier uniqueness, 19.7 structural decoupling before process coordination, 19.8 size adaptation and upgrade conditions. What is filled is not "multi-Agent orchestration capability" but "mutual-exclusion discipline under parallelism"; zero dependency, no platform binding.
+
+### XX. Rule-as-Asset Mechanism: Writing & Lifecycle of Executable Rule Files (new in v1.10)
+
+> **Source**: a requirement deposited by a downstream adopter external to this project (2026-09-14; see `references/规则资产化机制-需求草案-2026-09-14.md`). Core judgement: BRF already specifies "how context is relayed between Agents", but **does not treat "how an operating rule itself should be written so an Agent can reliably execute it" as a first-class concern** — the rule's writing standard, its ambiguity escape hatch, and its self-iteration path were all blank. The BRF project Agent independently reviewed and confirmed the three gaps G1/G2/G3; all three dual-track filters (domain-agnostic / no local-ops detail / reusable by others) passed; registered as the v1.10 candidate on 2026-09-14 and the chapter text was written on 2026-09-27. External benchmarking (2026-09-27): in 2026, AGENTS.md / CLAUDE.md / .cursor/rules have become the mainstream form of "conventions files", and broadly insist that "rules must be written as executable specs, not prose", "a stale instructions file is worse than none — review it as behaviour changes", and "keep a single source of truth to avoid drift" — all of which align tightly with this chapter's "five executable elements / rule self-iteration / rule-vs-state boundary", forming the external evidence chain.
+
+> **Core proposition**: write "how to do it" as a plain-text rule file that the Agent reads and executes. Write the rule once, and any later session or taker can replay the same action. A rule is not a human-readable manual; it is a **living document** that can be read, executed, and continuously self-improved.
+
+#### 20.1 Applicability and prerequisites
+
+| Scenario | Do you need this chapter? | Notes |
+|----------|---------------------------|-------|
+| One-off, single-use task | **No** | Ad-hoc instructions suffice; codifying a rule adds burden |
+| High-frequency, repeated judgement (sorting / classifying / naming / validating) | **Yes** | Re-deciding each time → unstable results; codifying yields reproducible results |
+| Multiple people / Agents obeying the same operation | **Yes** | The rule file is the consensus carrier, preventing "everyone follows their own understanding" |
+
+Prerequisite: **the project already has a persisted working directory** (the rule file itself must be persisted too, not just spoken in a session). Fix that first if absent.
+
+> Relationship to existing chapters: Ch. XIII "Identity Snapshot" answers "what the project is"; 17.2 UNKNOWN Ledger governs "whether a fact is confirmed" (information layer); Ch. XVIII governs "single-Agent takeover depth"; Ch. XIX governs "multi-Agent parallel exclusion". This chapter governs "**how the adopter's own business-rule file should be written to be reliable**" — non-overlapping with all of the above (boundaries in 20.6 / 20.7).
+
+#### 20.2 The explicit-rule principle
+
+Keep operating judgements out of human memory and session history; land them as plain-text files in the working directory. Why:
+
+- Judgements in a human's head are **not handable** — switch Agent or wait a few days and the logic is lost, forcing a re-guess;
+- Judgements buried in session history are **not searchable** — a taker will not dig through a long chat;
+- A plain-text rule file is **readable, referenceable, versionable** — the instruction to the Agent can then be fixed to one sentence: "execute per `<rule-file>`".
+
+#### 20.3 The five elements of an executable rule
+
+One executable rule states at least five elements; miss any one and the Agent can only guess, producing different results each time.
+
+| Element | Must state | Anti-example (not executable) |
+|---------|-----------|-------------------------------|
+| ① Input | Which files / materials this rule processes | "tidy up this directory" (says what to tidy?) |
+| ② Condition | By what standard it classifies into which category (list categories + conditions) | "classify reasonably" (no basis) |
+| ③ Output location | Where each category goes | only "put it away" (no where) |
+| ④ Naming convention | How files are named (date-included, project-uniform) | "name it whatever" |
+| ⑤ Fallback exit | Where the unsure goes, never force-fit (see 20.4) | missing → dirty data silently manufactured |
+
+> Related to yet distinct from Ch. XIII "Identity Snapshot": the snapshot describes "what the project is"; the five elements describe "how an operating rule is written". They stack — a rule file should also carry a contract header (Ch. II).
+
+#### 20.4 Why the fallback exit is mandatory
+
+⚠️ **The fallback exit (element ⑤ in 20.3) is a hard requirement — not optional.**
+
+Causal chain:
+
+1. Faced with an uncovered case, the Agent has two options — **stop and report** or **decide on its own**;
+2. If the rule never authorises "stop", the Agent's default tendency is to **produce a seemingly reasonable result** (because the task demands "completion");
+3. The result is **dirty data manufactured silently**, and **nobody notices** — the error is masked by the classification act itself;
+4. Therefore the rule must **explicitly authorise the Agent to stop**: "put the unsure ones in `<fallback dir>`, do not force-fit".
+
+> This shares a root with 17.2 UNKNOWN Ledger — both "leave a legal place for uncertainty". But 17.2 targets **fact confirmation** ("I don't know if this is true"), while this element targets **operational attribution** ("I know it's true, but where does it go"). They complement, not duplicate (division in 20.6).
+
+#### 20.5 The rule self-iteration path
+
+A rule is not a frozen manual; it grows with use.
+
+- **Boundary-case write-back**: uncovered situations found in execution are **written back into the rule** by the Agent, instead of being judged ad hoc every time;
+- **Versioning (optional)**: for large rule files, keep a change log inside the file or put it under version control;
+- **Decay signals** (appearing → review the rule):
+  - the rule has long been unupdated while usage has expanded;
+  - the same ambiguity is raised repeatedly and decided ad hoc each time;
+  - takers start "going by feel" instead of consulting the rule.
+
+> Distinction from the dual-track flow: the dual-track flow governs how **BRF's own** experience is distilled into the public spec (Ch. VII → handoffs); this clause governs how **the adopter's own business-rule file** grows with use. Different objects.
+
+#### 20.6 Division from the UNKNOWN Ledger (information layer vs operation layer)
+
+| Dimension | 17.2 UNKNOWN Ledger | 20.4 Fallback exit |
+|-----------|---------------------|--------------------|
+| Governs | whether a fact is confirmed | where to attribute / classify the unsure |
+| Typical question | "Is this true?" | "It's true, but where does it go?" |
+| Landing | explicitly list assumptions, pending decisions | a fallback dir specified inside the rule |
+| Layer | information layer | operation layer |
+
+They do not substitute: one governs "believe or not", the other "attribute or not". A single rule file can use **both** — mark unconfirmed assumptions (UNKNOWN) in text while also specifying a fallback landing for uncovered categories.
+
+#### 20.7 Boundary between rules and state (what goes in a rule file vs active context)
+
+- **Into the rule file (append-only, stable)**: reusable operating-judgement standards (five elements, fallback exit).
+- **Into the active context (current.md / BRIEF)**: the project's in-flight status, pending decisions, this task's temporary judgements.
+- **Do not mix**: writing "this task's temporary conclusion" into the rule file turns the rule into a project log, losing reusability; keeping "reusable general standards" only in a session means re-explaining them next time.
+
+> Orthogonal to Ch. XIV–XVI (four-state / patrol / gate): those govern **state and readiness**; this chapter governs **the writing and lifecycle of operating rules**.
+
+#### 20.8 Size adaptation
+
+| Operation frequency | Recommended |
+|---------------------|-------------|
+| One-off / occasional | no need to codify; ad-hoc is fine |
+| Repeated ≥ a few times | codify into a rule file, then reference it in one sentence |
+| Multiple people / Agents co-obey | rule file as consensus carrier, under version control |
+
+> **Anti-pattern warning**: forcing "write a rule file first" onto a one-off task is over-engineering the light. The trigger for asset-ising is **repeat frequency**, not "wanting to look rigorous".
+
+#### 20.9 Deliberately excluded
+
+The following are **not adopted** by this spec:
+
+1. Specific classification systems and directory names (a project's `cards/` `raw/` `inbox/` etc.) — adopter business detail; human-readable dir names in examples are illustrative only;
+2. Specific sources and collection channels — not general content;
+3. The depositing project's internal file structure, counting metrics, sync scripts — violate the "no local-ops detail" standard;
+4. "Rule as asset" as a slogan name — this spec uses descriptive phrasing, introducing no branded term;
+5. Full IDE auto-sync hooks / rule-validation runtimes — violate the de-platform-binding and plain-Markdown zero-dependency red lines (whether the fallback exit is "missing" may be checked by the adopter's own script; this spec mandates no implementation).
+
+> Chapter point: BRF extends from "specifying how context is relayed" to "specifying how a rule file must be written to be reliable" — 20.2 explicit rule, 20.3 five executable elements, 20.4 mandatory fallback exit, 20.5 rule self-iteration, 20.6 division from UNKNOWN Ledger, 20.7 rule-vs-state boundary, 20.8 size adaptation. What is filled is not "more features" but "the executable standard for the adopter's own business rules"; domain-agnostic, plain Markdown, zero dependency.

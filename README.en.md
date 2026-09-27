@@ -29,7 +29,7 @@ A **cross-agent, cross-platform, portable** method for relaying project context.
 | `CONTRIBUTING.md` | Contribution guide |
 | `LICENSE` | MIT License |
 
-> The specification is available in **both Chinese and English** (current version): `简报接力.md` (Chinese) / `Brief-Relay-Framework.md` (English). Chinese is authoritative; the English spec is kept in sync. Earlier versions (e.g. v1.0) are preserved via git tags / [GitHub Releases](https://github.com/RyanYang25/brief-relay-framework/releases).
+> The specification is available in **both Chinese and English** (current version: v1.10): `简报接力.md` (Chinese) / `Brief-Relay-Framework.md` (English). Chinese is authoritative; the English spec is kept in sync. Earlier versions (e.g. v1.0) are preserved via git tags / [GitHub Releases](https://github.com/RyanYang25/brief-relay-framework/releases). The latest addition, v1.10 "Rule-as-Asset Mechanism" (Ch. 20), specifies how an adopter's own business-rule file should be written to be reliably executable by an Agent — five executable elements, a mandatory fallback exit, and a self-iteration path.
 
 ## Quick start
 
