@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.12-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.13-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
@@ -67,6 +67,7 @@ Agent 上下文接力 / 记忆是活跃方向，BRF 与三类常见路线刻意�
 | 10 | **决策路线图与决策留痕（v1.11）** | 决策路线图（待拍板序列规划：分组 · 依赖链 · 逐组状态）+ 决策反转记录（「已推翻（日期+原因）」+ 新决策指针）+ 决策分级（重大 / 常规 / 设计细节分层记录）+ 参考资料版本状态（draft / current / superseded / archived）——补齐"设计密集型"项目：先规划拍板序列、推翻有痕、分级记录、多版本可判 |
 | 11 | **外部只读咨询 AI 协作（v1.11）** | 一次性只读咨询与并行写者分流——咨询包（背景 ≤10 行 + 问题 ≤5 个 + 约束红线）+ 回收对比（共识 / 分歧 / 独家）+ 观点隔离纪律，结论经人拍板后才进决策记录 |
 | 12 | **环境显式化（v1.12）** | 多环境部署（多机 / 多副本 / 网络同步）下的路径与身份声明——契约头 `environment` 字段 + 环境拓扑表（逻辑名 / 判定方式 / 根路径占位符 / 可访问路径集合 / 写权限，"可访问"≠"可写"）+ 12.5 路径表示规则（逻辑路径优先、裸绝对路径硬性禁入）+ 接手第 0 步先判环境——根治"AI 搞错环境白干一场"，跨环境接手不再靠盘符猜 |
+| 13 | **发布脱敏与来源血缘（v1.13）** | 发布闸门新增发布前脱敏核对（凭证 / 内网标识 / 个人隐私 / 裸绝对路径四类清单 + 可逆占位：本地留真值、发布版替换中性占位、映射不进发布版）+ 契约头可选 `origin` 血缘字段（续跑 / 分叉来源，供多 Agent 并行与跨副本接力追溯）——公开分发前不漏密钥隐私，改动来源可追溯 |
 
 ---
 
@@ -129,9 +130,9 @@ brief-relay-framework/
 
 ## 文档（Documentation）
 
-- **方法规范（中文 · 当前 v1.12）**：[简报接力.md](简报接力.md)
-- **Method Spec (English · current v1.12)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
-- **历史版本（v1.0 – v1.11）**：通过 git tag 锚定，[`git checkout v1.11`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
+- **方法规范（中文 · 当前 v1.13）**：[简报接力.md](简报接力.md)
+- **Method Spec (English · current v1.13)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
+- **历史版本（v1.0 – v1.12）**：通过 git tag 锚定，[`git checkout v1.12`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 
