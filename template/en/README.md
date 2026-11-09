@@ -9,6 +9,7 @@ This folder provides a **ready-to-use template** for the BRIEF Relay Framework (
    ```
    your-project/
    ├── BRIEF.md
+   ├── deploy-manifest.md
    ├── project-context/
    │   ├── context/
    │   │   ├── current.md
@@ -16,6 +17,7 @@ This folder provides a **ready-to-use template** for the BRIEF Relay Framework (
    │   ├── references/
    │   ├── handoffs/
    │   ├── .working/
+   │   ├── journal/
    │   └── changelog.md
    └── {meeting-notes-dir}/
    ```
@@ -29,6 +31,8 @@ This folder provides a **ready-to-use template** for the BRIEF Relay Framework (
 - `BRIEF.md`: single entry + evolution engine. A new agent / platform switch reads only this to take over.
 - `context/current.md`: current state, tasks, recent decisions (with rationale). Updated most often.
 - `context/standards.md`: output specs, workflow, past pitfalls. Append-only.
+- `deploy-manifest.md`: manifest of out-of-workspace deployment artifacts (live path / purpose / workspace copy / restore method / contains-credentials + a "Not covered" section). **Keep it and write "none + determination date" even when no artifacts exist**; sensitive file — never publish it, never mirror it wholesale into a cloud drive.
+- `project-context/journal/`: the session journal (v1.15) — one file per session, append-only five lines (time span / what was done / decisions / artifact paths / open items and next step). Its only purpose is to make write-back cheap enough that a long conversation cannot squeeze it out. **It is a log, not the truth**: distil it into `current.md` / `changelog.md` at close-out and merge it into `journal/archive/` monthly; never place it under `.working/` (auto-cleaned). Paired requirement: end every delivery reply with one write-back declaration line (`Write-back: <file> <time> · N open items`); a missing line counts as not delivered.
 
 ## The three-piece set (relay guarantee)
 

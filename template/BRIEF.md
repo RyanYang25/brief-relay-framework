@@ -34,6 +34,7 @@ downstream: context/current.md → context/standards.md → {会议记录目录}
 ```
 {项目根目录}/
 ├── BRIEF.md
+├── deploy-manifest.md        ← 部署台账（工作区外运行件：现场路径/作用/工作区副本/恢复方法/是否含凭据 + 「未覆盖」节；无部署件也保留并写"无"+判定日期；多线项目放各线目录。详见规范第二十四章，敏感文件不进发布包）
 ├── {会议记录目录}/
 └── project-context/
     ├── context/
@@ -42,6 +43,7 @@ downstream: context/current.md → context/standards.md → {会议记录目录}
     ├── references/
     ├── handoffs/
     ├── .working/
+    ├── journal/              ← 会话流水（v1.15）：一次会话一文件、append-only 五行（时段/做了什么/决定/产物/未决）；是流水不是真值，节点收尾提炼进 current/changelog、月度并入 archive/。不要放 .working/（那里会被自动清理）
     ├── changelog.md
     └── PROJECT_GUIDANCE.md（可选）
 ```

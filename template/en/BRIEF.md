@@ -33,6 +33,7 @@ downstream: context/current.md → context/standards.md → {meeting-notes-dir}/
 ```
 {project root}/
 ├── BRIEF.md
+├── deploy-manifest.md        ← Deployment manifest (live path / purpose / workspace copy / restore method / contains-credentials + a "Not covered" section; keep it and write "none" even when no artifacts exist; multi-line projects put one per line. See Chapter XXIV; sensitive, never published)
 ├── {meeting-notes-dir}/
 └── project-context/
     ├── context/
@@ -41,6 +42,7 @@ downstream: context/current.md → context/standards.md → {meeting-notes-dir}/
     ├── references/
     ├── handoffs/
     ├── .working/
+    ├── journal/              ← Session journal (v1.15): one file per session, append-only five lines (time span / what was done / decisions / artifacts / open items); a log, not the truth — distilled into current/changelog at close-out, merged into archive/ monthly. Never place it under .working/ (auto-cleaned)
     ├── changelog.md
     └── PROJECT_GUIDANCE.md (optional)
 ```

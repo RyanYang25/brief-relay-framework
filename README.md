@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.13-blue)](https://github.com/RyanYang25/brief-relay-framework)
+[![Version](https://img.shields.io/badge/version-v1.15-blue)](https://github.com/RyanYang25/brief-relay-framework)
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/RyanYang25/brief-relay-framework/blob/main/LICENSE)
 [![Language](https://img.shields.io/badge/language-Markdown-lightgrey)](https://github.com/RyanYang25/brief-relay-framework)
 [![Platform](https://img.shields.io/badge/platform-agnostic-orange)](https://github.com/RyanYang25/brief-relay-framework)
@@ -68,6 +68,8 @@ Agent 上下文接力 / 记忆是活跃方向，BRF 与三类常见路线刻意�
 | 11 | **外部只读咨询 AI 协作（v1.11）** | 一次性只读咨询与并行写者分流——咨询包（背景 ≤10 行 + 问题 ≤5 个 + 约束红线）+ 回收对比（共识 / 分歧 / 独家）+ 观点隔离纪律，结论经人拍板后才进决策记录 |
 | 12 | **环境显式化（v1.12）** | 多环境部署（多机 / 多副本 / 网络同步）下的路径与身份声明——契约头 `environment` 字段 + 环境拓扑表（逻辑名 / 判定方式 / 根路径占位符 / 可访问路径集合 / 写权限，"可访问"≠"可写"）+ 12.5 路径表示规则（逻辑路径优先、裸绝对路径硬性禁入）+ 接手第 0 步先判环境——根治"AI 搞错环境白干一场"，跨环境接手不再靠盘符猜 |
 | 13 | **发布脱敏与来源血缘（v1.13）** | 发布闸门新增发布前脱敏核对（凭证 / 内网标识 / 个人隐私 / 裸绝对路径四类清单 + 可逆占位：本地留真值、发布版替换中性占位、映射不进发布版）+ 契约头可选 `origin` 血缘字段（续跑 / 分叉来源，供多 Agent 并行与跨副本接力追溯）——公开分发前不漏密钥隐私，改动来源可追溯 |
+| 14 | **部署件留痕（v1.14）** | 工作区外运行侧（常驻服务 / 守护与启动项 / 生成产物）的接手治理——部署台账（跟线走，五列：现场路径 / 作用 / 工作区副本 / 恢复方法 / 是否含凭据 + 「未覆盖」节，所有项目强制）+ 可重建性（现场能跑 ≠ 换机可重建，进验证声明第五段）+ 临时产物三出口 + 凭据禁镜像（内同步维度）——接手者不再拿到"能读不能跑"的项目 |
+| 15 | **会话级写回（v1.15）** | 不用人到每个对话框提醒 Agent 更新——更新触发过去按"事件"设计，普通对话不产事件，写回实际押在"人的记性 + 模型长上下文"上。三件不依赖记性的机制：会话流水 journal（`project-context/journal/`，append-only 五行，单次写回约 30 秒）+ 交付末尾写回声明（缺行即未交付，用户零成本验收）+ 门禁陈旧检测（current 时间戳对照项目 mtime / 当日无流水 / 写回断档，只报不写）——漏写回从"不可见"变成"可查" |
 
 ---
 
@@ -123,16 +125,16 @@ brief-relay-framework/
 └── 方法规范（权威交付物，根目录·去版本后缀）
     ├── 简报接力.md                          ← 方法规范（中文，当前版）
     └── Brief-Relay-Framework.md            ← Method Spec (English, current)
-> 历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6 / v1.7 / v1.8 / v1.9 / v1.10 / v1.11）已通过 git tag 锚定，不在根目录堆副本；`git checkout v1.11` 可取回。
+> 历史版本（v1.0 / v1.1 / v1.2 / v1.3 / v1.4 / v1.5 / v1.6 / v1.7 / v1.8 / v1.9 / v1.10 / v1.11 / v1.12 / v1.13）已通过 git tag 锚定，不在根目录堆副本；`git checkout v1.13` 可取回。v1.14 未单独发版，其内容随 v1.15 一并上线。
 ```
 
 ---
 
 ## 文档（Documentation）
 
-- **方法规范（中文 · 当前 v1.13）**：[简报接力.md](简报接力.md)
-- **Method Spec (English · current v1.13)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
-- **历史版本（v1.0 – v1.12）**：通过 git tag 锚定，[`git checkout v1.12`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本
+- **方法规范（中文 · 当前 v1.15）**：[简报接力.md](简报接力.md)
+- **Method Spec (English · current v1.15)**：[Brief-Relay-Framework.md](Brief-Relay-Framework.md)
+- **历史版本（v1.0 – v1.13）**：通过 git tag 锚定，[`git checkout v1.13`](https://github.com/RyanYang25/brief-relay-framework/releases) 可取回，根目录不堆副本（v1.14 未单独发版，内容随 v1.15 一并上线）
 - **开箱模板**：[template/](template/)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 

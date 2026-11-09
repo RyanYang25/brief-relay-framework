@@ -1,4 +1,4 @@
-# Brief Relay Framework (BRF) v1.13
+# Brief Relay Framework (BRF) v1.15
 
 > **One-line positioning**: Use one continuously-evolving **Project Brief (BRIEF)** as the single entry point, paired with a three-part kit — **contract header + relay baton + recovery protocol** — so that any AI Agent platform can take over at zero cost, migrate cross-platform, and never lose project context.
 >
@@ -6,7 +6,7 @@
 >
 > **Scope**: Any project requiring multi-file collaboration and state tracking — consulting, writing, R&D, operations, etc. Domain-agnostic; not bound to any IDE or Agent platform.
 >
-> **Version note**: This is v1.13. v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations. v1.9 adds "XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline" (distilled from a real test where **three Agent sessions developed the same project in parallel**, external to this project): v1.0→v1.8 carried a **never-stated assumption — at any given moment only one writer holds the baton**; under parallel Agents that assumption breaks, with no fallback clause anywhere in the spec. v1.9 makes it explicit and supplies the constraints — A physical copy isolation (one independent working copy + branch per Agent, the primary copy keeps the integration line); B single-writer shared relay docs (BRIEF / current / changelog / standards are editable only by the mainline owner; working copies write to their own dedicated handoff file); C claim-by-declaration (sync first → declare the files you will touch → then act, **explicitly stating that this mechanism provides no real-time mutual exclusion**); D explicit merge and conflict resolution (overwriting another's changes wholesale is forbidden); E identifier uniqueness (a persona name alone may not serve as attribution — use "role@project" or the copy identifier); F structural decoupling before process coordination (split hot files *before* starting parallel work); G size adaptation (2–3 Agents use the lightweight mode; only at ≥5 with stable demand upgrade to domain split / queue / board); 19.9 deliberately excludes port numbers / IDE exclusion configs / auto-sync hooks / real-time file locks / multi-Agent orchestration frameworks, all of which violate the plain-Markdown zero-dependency and de-platform-binding red lines. v1.10 adds "XX. Rule-as-Asset Mechanism: Writing & Lifecycle of Executable Rule Files" (from a requirement deposited by a downstream adopter external to this project): v1.0→v1.9 answered "how context relays between Agents", but never treated "how the operating rules themselves should be written to be reliably executable by an Agent" as a first-class citizen — the writing standard, the ambiguity exit, and the self-iteration path were blank. v1.10 fills this gap: A Rule explicitness (operating judgements written into a plaintext rule file in the working directory, not left in a human's head or session history); B Five executable elements (input / decision criteria / output location / naming convention / fallback exit); C Mandatory fallback exit (a rule must designate a legitimate landing spot for uncovered cases and expressly forbid forced categorisation, complementing the 17.2 UNKNOWN ledger — 17.2 covers the information layer "is this fact confirmed", this mechanism covers the operational layer "where does an ambiguous item go"); D Rule self-iteration (write back edge cases, version the rules, recognise rule-rot signals); E Rule-vs-state boundary; F Scale fit (one-off tasks need no rule-as-asset); 20.9 deliberately excludes concrete taxonomies/directory names / specific sources and channels / an adopter's internal structure / slogan-style branding nouns. v1.11 makes two enhancements to existing chapters and adds two new chapters (sourced from BRF's first "design-intensive" external practice project — indie game A's all-day session on 2026-10-03: 15 call-points grouped by dependency chain, two decision reversals, one-off consultation of 3 external AIs with return comparison; that day's audit found 5 doc inconsistencies and 1 misleading design-doc status): A **14.6 Decision Reversal Record** (a disproven judgment ≠ a retired proposal — annotation format "Reversed (date+reason)" + link to the new decision, active wording cleaned up immediately with the call, division from Archive state and the 17.2 UNKNOWN ledger); B **14.7 Decision Tiering Criteria** (Major / Regular / Design-iteration-detail, choosing which record layer a conclusion lands in, preventing numerical tweaks from drowning direction-changing decisions); C **15.4 Reference-doc Version Status** (four status values draft/current/superseded/archived + supersession-chain pointer + index marks the current version, preventing successors from reading stale copies); D **Chapter XXI "Decision Roadmap"** (recommended component) — the planning carrier for a pending-decision sequence: three elements grouping · dependency chain · per-group status; a roadmap item flows into Decisions state once decided — the four states and the roadmap are "entry-planning layer vs item flow"; E **Chapter XXII "External Read-only Consulting AI Collaboration"** — the division from Ch. XIX's parallel writers (consultation pack: background ≤10 lines + ≤5 questions + constraint red lines; return comparison: consensus / divergence / exclusive insights; view-isolation discipline: views go into references, do not occupy the Agent role table, do not enter the context relay, conclusions enter decision records only after the owner's call; deliberately excludes using external AIs as writers and platform-bound practices). v1.11 deliberately does not adopt: learning-track components / phase-gate rolling archival (downstream business-specific), `references/` light classification prefixes (consistent with 20.9's exclusion of concrete taxonomies), governance de-frequency statements (already covered by 20.8 size adaptation). v1.12 adds "XXIII. Environment Explicitness: path and identity declaration under multi-environment deployment" (from an external downstream-user submission — in multi-machine collaborative projects "AI gets the environment wrong and wastes the whole session" recurs, and the root cause lies in BRF itself: de-platform-binding implies multi-environment deployment, yet "environment/path ambiguity" was never treated as first-class): A. contract-header optional `environment` field + environment topology table (logical name / determination method / root-path placeholder / accessible-path set including network and shared paths / write permission — "accessible" ≠ "writable"; writes default to this environment's root only); B. 12.5 "Path Representation Rules" (mandatory: logical paths first, bare absolute paths forbidden, the only exception being inside the environment topology table, historical absolute paths kept as-is with an added note); C. recovery protocol adds takeover Step 0 "determine the environment first" (linking to the 13.2 takeover checklist). Chapter XXIII deliberately excludes: concrete drive letters / mount points / sync-tool configs, concrete detection commands, platform-bound product names (use generic terms like "sync hub / two-way sync"), and automatic environment-detection tooling (zero-dependency line); gate-based machine checks ("bare absolute path smell") are left as a future optional extension. v1.13 derives from an independent review against the external benchmark AgentGit (agit, session-layer git): agit was judged a "session-layer version control for Agent conversations", a different layer from BRF's "project-layer relay spec" — not a substitute; its "key-decision snapshot" was rejected (BRF's decision record is already complete via 15.1 four fields + 14.6 reversal + 14.7 grading; BRF does not manage session history). Two items were adopted: A **15.3 release gate adds a pre-release desensitization check** (credentials / intranet identifiers / personal privacy / bare absolute paths checklist + reversible placeholders: keep true values locally, replace with neutral placeholders in the release, mapping never enters the release; manual item-by-item pass, no machine scanning gate this round); B **Ch.2 contract header adds an optional `origin` provenance field** (continue/fork source, for multi-Agent parallel work and cross-copy relay; omittable for sequential single writers). A desensitized minimal standard sample project ships with the release package. v1.13 deliberately excludes: session-JSONL version control / Hub hosting / RC remote control / cross-runtime detection (tool-layer capability, outside BRF's project-layer remit) and a machine desensitization scan gate (future optional).
+> **Version note**: This is v1.15 (it carries the v1.14 content as well; v1.14 was never released separately and ships together with v1.15). v1.0 was the first formally-named public release; v1.1 adds "XII. Tool & Script Dependency Portability (cross-machine)", distilled from real cross-machine deployment pitfalls (NAS / cloud drives exclude hidden folders by default); v1.2 adds "XIII. Project Self-description Boost: Identity Snapshot + Takeover Checklist", absorbing the meta-info self-description and pre-publish testing ideas from standardized skills (taking the spirit, not the wrapper); v1.3 adds "XIV. Traceability & Decision Lifecycle (four-state model)", making the Open/Decisions/Resolved/Archive lifecycle explicit (Open strengthened, Decisions gains owner/impact-scope, Archive makes retire≠delete explicit), and clarifies the division between raw session evidence and structured docs; v1.4 adds "XV. Four-state Patrol Checklist & Active-context Lightening", turning the v1.3 four-state model into an actionable "four-state patrol checklist" that must be run at every iteration close-out; v1.5 adds "XVI. Four-state Readiness Gate & Platform Entry Adapter", pushing v1.4's "manual patrol" one step further — A upgrades the four-state patrol checklist into a **machine-verifiable handoff readiness gate** (a lightweight script that auto-checks four-state closure and emits a report), and B provides a **pure-Markdown BRIEF⇄AGENTS.md/CLAUDE.md bidirectional mapping** (platform entry adapter) so a BRF project keeps its "single-entry authority" while still enjoying the auto-takeover benefit of mainstream coding platforms (Cursor / Claude Code / Roo, etc.). Neither introduces external dependencies nor violates the de-platform-binding red line. v1.6 makes three targeted enhancements to existing chapters (distilled from a real cross-platform takeover test on 2026-08-31 — a brand-new Agent with zero memory taking over a WorkBuddy-hosted project; 9 of 12 claimed capabilities passed, 3 real gaps found): A adds a `last_updated` field to the Ch. II contract header so the recovery protocol's "compare last-updated times" (9.1) becomes machine-verifiable, and the Ch. XVI readiness gate gains a timestamp-consistency check; B adds 12.4 "File Encoding Convention" to Ch. XII — project files uniformly UTF-8 without BOM, native CLIs read with explicit encoding, Chinese-literal scripts need UTF-8 BOM; C adds a minimal reference implementation of the gate (`tools/four-state-gate.ps1`, which the BRF project space itself runs and has verified). v1.7 adds "XVII. Handoff Trustworthiness: Validation Statement, UNKNOWN Ledger, Five Handoff-quality Questions, and Capacity Threshold" (from a 2026-09-01 GitHub benchmark of agent-handoff-skill / waggle / katalint, etc.): where v1.5→v1.6 made handoff *formally* machine-checkable, v1.7 makes the *content* trustworthy — A requires every "done" claim to carry a validation statement (conclusion / how verified / result / not-verified) plus an explicit UNKNOWN ledger that quarantines assumptions; B gives five handoff-quality questions for each hand-off action; C quantifies v1.4's active-context lightening into a capacity threshold (~500 lines / 32 KB advisory line); D adds a "document-health smell" family to the 16.1 gate (dangling links / leftover placeholders / missing required fields / open-UNKNOWN count / oversize, split into ERROR/WARN) and upgrades the minimal reference four-state-gate.ps1 accordingly; 17.6 deliberately excludes token scheduling / MCP / vector memory / orchestration frameworks that violate the pure-Markdown zero-dependency red line. v1.8 adds "XVIII. Process Flexibility: Tiered Takeover & Task Routing" (from a 2026-09-01 GitHub benchmark of BMAD-METHOD / repo-context-ledger / github/spec-kit, etc.): where v1.5→v1.7 made handoff *formally* verifiable and *content* trustworthy, v1.8 makes the *process* elastic by scenario — A takeover-intent classification (Understand / Tweak / Change / Continue, deciding how much to read); B task-size tiering (Light / Medium / Heavy, deciding how deep to go); C standards as a constitution with alignment checks (the anchor that keeps elasticity from drifting); 18.6 deliberately excludes task-size auto-scorers / platform auto-tiering hooks and other heavy implementations. v1.9 adds "XIX. Multi-Agent Parallel Collaboration: Isolation, Single-writer & Merge Discipline" (distilled from a real test where **three Agent sessions developed the same project in parallel**, external to this project): v1.0→v1.8 carried a **never-stated assumption — at any given moment only one writer holds the baton**; under parallel Agents that assumption breaks, with no fallback clause anywhere in the spec. v1.9 makes it explicit and supplies the constraints — A physical copy isolation (one independent working copy + branch per Agent, the primary copy keeps the integration line); B single-writer shared relay docs (BRIEF / current / changelog / standards are editable only by the mainline owner; working copies write to their own dedicated handoff file); C claim-by-declaration (sync first → declare the files you will touch → then act, **explicitly stating that this mechanism provides no real-time mutual exclusion**); D explicit merge and conflict resolution (overwriting another's changes wholesale is forbidden); E identifier uniqueness (a persona name alone may not serve as attribution — use "role@project" or the copy identifier); F structural decoupling before process coordination (split hot files *before* starting parallel work); G size adaptation (2–3 Agents use the lightweight mode; only at ≥5 with stable demand upgrade to domain split / queue / board); 19.9 deliberately excludes port numbers / IDE exclusion configs / auto-sync hooks / real-time file locks / multi-Agent orchestration frameworks, all of which violate the plain-Markdown zero-dependency and de-platform-binding red lines. v1.10 adds "XX. Rule-as-Asset Mechanism: Writing & Lifecycle of Executable Rule Files" (from a requirement deposited by a downstream adopter external to this project): v1.0→v1.9 answered "how context relays between Agents", but never treated "how the operating rules themselves should be written to be reliably executable by an Agent" as a first-class citizen — the writing standard, the ambiguity exit, and the self-iteration path were blank. v1.10 fills this gap: A Rule explicitness (operating judgements written into a plaintext rule file in the working directory, not left in a human's head or session history); B Five executable elements (input / decision criteria / output location / naming convention / fallback exit); C Mandatory fallback exit (a rule must designate a legitimate landing spot for uncovered cases and expressly forbid forced categorisation, complementing the 17.2 UNKNOWN ledger — 17.2 covers the information layer "is this fact confirmed", this mechanism covers the operational layer "where does an ambiguous item go"); D Rule self-iteration (write back edge cases, version the rules, recognise rule-rot signals); E Rule-vs-state boundary; F Scale fit (one-off tasks need no rule-as-asset); 20.9 deliberately excludes concrete taxonomies/directory names / specific sources and channels / an adopter's internal structure / slogan-style branding nouns. v1.11 makes two enhancements to existing chapters and adds two new chapters (sourced from BRF's first "design-intensive" external practice project — indie game A's all-day session on 2026-10-03: 15 call-points grouped by dependency chain, two decision reversals, one-off consultation of 3 external AIs with return comparison; that day's audit found 5 doc inconsistencies and 1 misleading design-doc status): A **14.6 Decision Reversal Record** (a disproven judgment ≠ a retired proposal — annotation format "Reversed (date+reason)" + link to the new decision, active wording cleaned up immediately with the call, division from Archive state and the 17.2 UNKNOWN ledger); B **14.7 Decision Tiering Criteria** (Major / Regular / Design-iteration-detail, choosing which record layer a conclusion lands in, preventing numerical tweaks from drowning direction-changing decisions); C **15.4 Reference-doc Version Status** (four status values draft/current/superseded/archived + supersession-chain pointer + index marks the current version, preventing successors from reading stale copies); D **Chapter XXI "Decision Roadmap"** (recommended component) — the planning carrier for a pending-decision sequence: three elements grouping · dependency chain · per-group status; a roadmap item flows into Decisions state once decided — the four states and the roadmap are "entry-planning layer vs item flow"; E **Chapter XXII "External Read-only Consulting AI Collaboration"** — the division from Ch. XIX's parallel writers (consultation pack: background ≤10 lines + ≤5 questions + constraint red lines; return comparison: consensus / divergence / exclusive insights; view-isolation discipline: views go into references, do not occupy the Agent role table, do not enter the context relay, conclusions enter decision records only after the owner's call; deliberately excludes using external AIs as writers and platform-bound practices). v1.11 deliberately does not adopt: learning-track components / phase-gate rolling archival (downstream business-specific), `references/` light classification prefixes (consistent with 20.9's exclusion of concrete taxonomies), governance de-frequency statements (already covered by 20.8 size adaptation). v1.12 adds "XXIII. Environment Explicitness: path and identity declaration under multi-environment deployment" (from an external downstream-user submission — in multi-machine collaborative projects "AI gets the environment wrong and wastes the whole session" recurs, and the root cause lies in BRF itself: de-platform-binding implies multi-environment deployment, yet "environment/path ambiguity" was never treated as first-class): A. contract-header optional `environment` field + environment topology table (logical name / determination method / root-path placeholder / accessible-path set including network and shared paths / write permission — "accessible" ≠ "writable"; writes default to this environment's root only); B. 12.5 "Path Representation Rules" (mandatory: logical paths first, bare absolute paths forbidden, the only exception being inside the environment topology table, historical absolute paths kept as-is with an added note); C. recovery protocol adds takeover Step 0 "determine the environment first" (linking to the 13.2 takeover checklist). Chapter XXIII deliberately excludes: concrete drive letters / mount points / sync-tool configs, concrete detection commands, platform-bound product names (use generic terms like "sync hub / two-way sync"), and automatic environment-detection tooling (zero-dependency line); gate-based machine checks ("bare absolute path smell") are left as a future optional extension. v1.13 derives from an independent review against the external benchmark AgentGit (agit, session-layer git): agit was judged a "session-layer version control for Agent conversations", a different layer from BRF's "project-layer relay spec" — not a substitute; its "key-decision snapshot" was rejected (BRF's decision record is already complete via 15.1 four fields + 14.6 reversal + 14.7 grading; BRF does not manage session history). Two items were adopted: A **15.3 release gate adds a pre-release desensitization check** (credentials / intranet identifiers / personal privacy / bare absolute paths checklist + reversible placeholders: keep true values locally, replace with neutral placeholders in the release, mapping never enters the release; manual item-by-item pass, no machine scanning gate this round); B **Ch.2 contract header adds an optional `origin` provenance field** (continue/fork source, for multi-Agent parallel work and cross-copy relay; omittable for sequential single writers). A desensitized minimal standard sample project ships with the release package. v1.13 deliberately excludes: session-JSONL version control / Hub hosting / RC remote control / cross-runtime detection (tool-layer capability, outside BRF's project-layer remit) and a machine desensitization scan gate (future optional). v1.14 adds "XXIV. Deployment Artifact Traceability: Takeover-readiness of the Out-of-workspace Runtime Side" (sourced from the e-ink sticky-note / Kindle dashboard line — a service running long-term in a standalone directory outside the project workspace; within two days a dozen files changed, two refresh scripts and startup items were added, while the workspace held only docs: hardcoded interpreter paths in out-of-workspace scripts broke twice unnoticed, the workspace code copy lagged the live one by a full day, 22 temporary test images sat next to deliverables, and a token-bearing credential snapshot risked being mirrored wholesale onto a sync drive): v1.0→v1.13's "project space = source of truth" does **not** hold for deployment artifacts — file organization, index, four states and gates all revolve around documents inside the project space, while the runtime side (long-running services / daemons and startup items / generated artifacts) is neither indexed nor synced, so a successor receives a project that "reads but cannot run". v1.14 fills this gap: A **Deployment manifest** (per line: single-line `{ROOT}/deploy-manifest.md`, multi-line `{ROOT}/<line>/deploy-manifest.md`; five columns = live path / purpose / workspace copy / restore method / contains-credentials, plus a mandatory "Not covered" section; **file copies are authoritative**, and physically uncopyable binaries/large runtimes are marked "no copy" with a restore method; **mandatory for all projects** — a project with no deployment artifacts must still keep the section and state "none" explicitly, never silently omit it); B **Reconstructability** (17.1 validation statement gains a fifth section — running on site ≠ reproducible on a clean machine; missing pieces may only enter the 17.2 UNKNOWN ledger); C **Three exits for temporary artifacts** (delete on completion / promote-and-rename into the workspace / register as reconstructable; the "still on site, not in the manifest, nobody knows if it can be deleted" third state is forbidden); D **No-mirroring of credentials** (credential-bearing artifacts must not enter any sync directory; only the generation method is recorded — 15.3 covers outbound release only, this covers internal sync); E **Path truth vs desensitization boundary** (live paths in the manifest fall under the same exemption as the 23.2 environment topology table without adding a 12.5 exception; the manifest is marked sensitive, never enters a release package; public templates use placeholders only). v1.14 deliberately excludes: deployment-directory scan gates / scripts that auto-detect deployment artifacts (live directories are often unreachable from the gate, making machine checks prone to false alarms — future optional), platform-bound product names, and copying other programs' installation directories into the workspace. v1.15 adds "XXV. Session-level Write-back: Journal, Declaration and Staleness Detection" (sourced from the project owner's field report — every chat window required a human prompt to make the Agent update BRIEF, and one forgotten prompt meant the information was lost for good under context compaction): every update trigger from v1.0 to v1.14 was designed around **events**, while an ordinary conversation produces no event, so write-back in practice rested on "the human's memory + the model's long context" — the weakest possible link. v1.15 moves that reliability onto three mechanisms that do not depend on memory: A **session journal** (`project-context/journal/YYYY-MM-DD-<topic>.md`, append-only five lines = time span / what was done / decisions / artifact paths / open items and next step, roughly 30 seconds per write-back; explicitly **not** placed in the auto-cleaned `.working/`); B **write-back declaration** (every delivery reply ends with one fixed line "Write-back: <file> <time> · N open items"; a missing line counts as not delivered — a zero-cost checkpoint for the user); C **staleness detection** (the 16.1 gate gains three WARN checks: current's timestamp lags the project's newest mtime / no journal entry for the day / write-back gap; criteria rest only on persisted facts and the detector **reports, never writes**). One common misreading is corrected as well: context compaction loses the Agent's memory, not the files — as long as write-back happens before compaction, nothing is lost, so the answer is smaller granularity, not louder reminders. v1.15 deliberately excludes: auto-backfill and auto full-sync (context-free backfill overwrites the truth, and 16.3 already rules out platform-side listeners), real-time session-event hooks (platform binding), replacing current/changelog with the journal, shipping the journal in a release package, and loading write-back with a heavy schema or word quotas.
 
 ---
 
@@ -51,6 +51,7 @@ You are a project management assistant. Please scaffold a `project-context` work
 ```
 {project root}/
 ├── BRIEF.md                  ← Project Brief (single entry + evolution engine, at root, with @context-root contract header)
+├── deploy-manifest.md        ← Deployment manifest (v1.14: out-of-workspace runtime artifacts = live path / purpose / workspace copy / restore method / contains-credentials + a "Not covered" section; keep it and write "none" even when no artifacts exist. Multi-line projects put one per line: `{line}/deploy-manifest.md`)
 ├── {meeting-notes dir}/      ← Meeting/communication records (default B02 会议记录/, customizable, see encoding note below)
 ├── project-context/
 │   ├── context/
@@ -60,6 +61,7 @@ You are a project management assistant. Please scaffold a `project-context` work
 │   ├── handoffs/             ← Historical outputs (completed deliverables)
 │   ├── .working/             ← Agent temp files (auto-cleaned, not version-controlled)
 │   ├── tools/                ← Project's own tools/scripts (plain files, cross-platform readable, carried with the project)
+│   ├── journal/              ← (v1.15) Session journal: one file per session, append-only five lines (time span / what was done / decisions / artifacts / open items); a log, not the truth — distilled into current/changelog at close-out, merged into archive/ monthly
 │   ├── changelog.md          ← Structure-change log (records only file add/remove, directory adjustments)
 │   └── PROJECT_GUIDANCE.md   ← (optional) detailed encyclopedia recording historical decisions and full task list
 ```
@@ -280,6 +282,8 @@ When asked to work on the project:
 | context/standards.md | Append-only | New spec or pitfall record added |
 | PROJECT_GUIDANCE.md | After every important event | Detailed historical decisions and full task list |
 | changelog.md | On every file-structure change | File or directory added/modified/deleted |
+| deploy-manifest.md | On every deployment-artifact change | Out-of-workspace runtime artifact added/removed/moved, interpreter or run account changed, startup method changed (v1.14, see Scenario 8) |
+| journal/ session log | On every session with real progress | One entry per session, append-only; no need to wait for an "event" to occur (v1.15, see Scenario 9); distilled into current / changelog at close-out |
 
 > **⚠️ Note**: The above is the principle table of "what to change". For concrete steps see the "Update SOP" below — it tells the Agent "how to change, in what order, which files to link".
 
@@ -396,6 +400,47 @@ When asked to work on the project:
 4. **Clean .working/**
    - Delete temp scripts and intermediate products, keep the directory tidy
 
+#### Scenario 8: Deployment-artifact change (v1.14)
+
+> Trigger: adding / removing / moving an artifact outside the workspace, or changing the interpreter, run account, or startup method (autostart, system service, firewall allowance).
+
+1. **Sync copies (file copies are authoritative)**
+   - Copyable text artifacts (service scripts, daemon scripts, launchers, ops scripts) are copied into the workspace's line directory and verified **same-version** as the live one (hash or content diff)
+   - Binaries / large runtimes (interpreter, virtualenv) are not copied; record "no copy + restore method" in the manifest
+
+2. **Update deploy-manifest.md** (within the same change)
+   - Maintain the five columns item by item: live path / purpose / workspace copy / restore method / contains-credentials
+   - Update the "Not covered" section, honestly stating what has not been retrieved or registered
+   - A new project with no artifacts must still keep the section and write "no out-of-workspace deployment artifacts (determination date)"
+
+3. **Handle credential-bearing artifacts per 24.5**
+   - No copying, no entry into any sync directory; record the generation method only
+
+4. **Dispose of temporary artifacts on the spot**
+   - Choose one of the three exits in 24.4: delete on completion / promote-and-rename into the workspace / register as reconstructable; never leave the "on site, not in the manifest, nobody knows if it can be deleted" third state
+
+5. **When startup items or the runtime environment change, update "restore method"**
+   - Write the rebuild steps (source, dependency packages, registration content, allowances); anything not reproducible on a clean machine goes into the 17.2 UNKNOWN ledger
+
+#### Scenario 9: Session-delivery write-back (v1.15)
+
+> Trigger: any conversation with **real progress**, whether or not it produced an "event" (this is exactly the gap v1.15 closes — ordinary discussion triggers nothing, yet information still drains away).
+
+1. **30-second journal entry**
+   - Append five lines under `project-context/journal/YYYY-MM-DD-<topic>.md` (time span / what was done / decisions / artifact paths / open items and next step), append-only; split files by topic within one session, and let parallel Agents each write their own line per Ch. XIX
+
+2. **Touch the truth files only when needed**
+   - Change `current.md` only for status changes or new decisions; editing a truth file merely to note "this was discussed" is using the wrong layer (the journal is that layer)
+
+3. **Declare the write-back at delivery**
+   - One line: `Write-back: <file> <time> · <file> <time> · N open items`; write `no changes (reason)` when nothing changed; a missing line counts as not delivered
+
+4. **Run the gate before closing**
+   - Run the `tools/four-state-gate.ps1` "write-back freshness" checks (25.4), and address each WARN by name or explicitly judge it a false alarm — never silently
+
+5. **Converge at the node**
+   - At 15.1 close-out, distil the journal into current / changelog; monthly merge finished entries into `journal/archive/YYYY-MM.md`, keeping only the current month active
+
 ---
 
 ### IX. Session Recovery Protocol & Incremental Persistence Discipline (cross-platform handoff insurance)
@@ -406,7 +451,7 @@ When asked to work on the project:
 
 Any Agent **re-taking over** this project (whether a new session, cross-platform switch, or post-interrupt recovery), the first step **must**:
 
-0. **Determine the current environment (new in v1.12, multi-environment deployments)**: first consult the environment topology table (XXIII.23.2), use its "determination method" to confirm which environment this session is in, resolve this environment's real `{ROOT}` path, then proceed — **determine environment first, then compare timestamps**; single-machine single-directory projects skip this step (for them `{ROOT}` is always this repo root);
+0. **Determine the current environment (new in v1.12, multi-environment deployments)**: first consult the environment topology table (XXIII.23.2), use its "determination method" to confirm which environment this session is in, resolve this environment's real `{ROOT}` path, then proceed — **determine environment first, then compare timestamps**; single-machine single-directory projects skip this step (for them `{ROOT}` is always this repo root). **If the project has out-of-workspace deployment artifacts (v1.14)**, read the corresponding line's deployment manifest (XXIV.24.2) next, confirming live paths, workspace copies and "contains credentials" before acting; if the manifest is missing or has "Not covered" items, record them in the 17.2 UNKNOWN ledger rather than filling gaps from memory.
 1. Read `BRIEF.md` (including the @context-root block) and `context/current.md` (including the @context block);
 2. Compare the last-updated times of both, confirm status consistency (v1.6: the contract-header `last_updated` field makes this comparison machine-checkable, see the 16.1 gate's timestamp-consistency check);
 3. If inconsistency is found, or there is an unclosed in-flight task, first **reconcile** (confirm with the user if necessary), then start new work;
@@ -420,6 +465,8 @@ Any Agent **re-taking over** this project (whether a new session, cross-platform
 - Upon completion of any task step, **immediately persist and update the corresponding file**; do not wait until session end to backfill;
 - The conversation context (transcript) itself **has no authority** — the only thing truly lost is "what hasn't been written to a file yet, only lives in the conversation";
 - As long as each step persists immediately, an interrupt at worst loses only the last in-flight step; after restart, just follow the `downstream` relay relationship in @context to continue. This is more reliable than "auto full-sync" because the latter also assumes the Agent is alive.
+
+> **v1.15 lightweight landing spot**: an ordinary conversation does not need to touch `current.md` every time — append five journal lines under `project-context/journal/` per 25.2 and give the write-back declaration per 25.3 at delivery; distil everything into current / changelog at close-out (15.1). This way "persist every step" no longer rests on willpower; whether a gap exists is checked by 25.4's staleness detection against file facts, not the Agent's self-report.
 
 #### 9.3 Scheduled automation patrol (optional, not required)
 
@@ -498,6 +545,8 @@ Every BRF project should keep a "cross-platform deployment checklist" in `standa
 
 > This checklist is the new Agent's "health check" on takeover: first confirm the "carried" items are complete, then handle the "needs install" items — avoiding a silent missing dependency that breaks the project.
 
+> **Division from the deployment manifest (v1.14)**: this checklist covers only **in-project** items (whether they travel with the package, how deps get installed); long-running services / startup items / generated artifacts **deployed outside the project space** are recorded by the deployment manifest in XXIV.24.2 (live path / purpose / workspace copy / restore method / contains-credentials). One asks "is the package complete", the other "what hangs outside the package" — they are not merged.
+
 #### 12.4 File Encoding Convention (new in v1.6)
 
 > **Starting point**: BRF's "portability-first constraint" requires documents to be cross-platform readable. Real-world testing found a common blind spot: native Windows PowerShell etc. decode UTF-8-without-BOM Chinese files using the system ANSI/GBK code page by default, producing mojibake — the same file renders fine in VS Code / GitHub / macOS / Linux, yet is "unreadable" in a native CLI. 12.1 rules out "hardcoded usernames in paths"; this section rules out "inconsistent file encoding".
@@ -512,7 +561,7 @@ Every BRF project should keep a "cross-platform deployment checklist" in `standa
 > **Starting point**: 12.1 rules out "hardcoded usernames in paths", but in multi-environment deployments (multi-machine / multi-copy / network sync), **environment-prefixed absolute paths** (`C:\…` / `E:\…` / `\\NAS\…`) hardcoded in documents and scripts create ambiguity on cross-environment takeover — the same logical file has different physical paths per environment, so an instruction "read `E:\…`" will fail or misjudge in another environment. These rules turn path representation from ad-hoc guessing into an explicit convention; the detailed version and determination discipline are in Chapter XXIII.
 
 - **Logical paths first**: references to in-project files use logical paths (`{ROOT}/project-context/…`) or relative paths; logical names (`{ROOT}` / `{NAS}` etc.) are defined and resolved only in the environment topology table (23.2).
-- **Bare absolute paths forbidden (mandatory)**: never write unannotated absolute physical paths (`C:\…`, `E:\…`, `\\NAS\…`, `/home/…`) in BRIEF / documents / scripts; the **only exception** is inside the environment topology table (mapping values are themselves declared paths).
+- **Bare absolute paths forbidden (mandatory)**: never write unannotated absolute physical paths (`C:\…`, `E:\…`, `\\NAS\…`, `/home/…`) in BRIEF / documents / scripts; the **only exception** is inside the environment topology table (mapping values are themselves declared paths), plus the "live path" column of the deployment manifest in Chapter XXIV (a runtime fact record, treated as the same exemption per 24.6, and the manifest itself is never published).
 - **Cross-environment references must be annotated**: when a path really points to another environment, annotate the target environment's logical name (e.g. "read `{ROOT}/docs/x.md` (`DEV-desktop`'s `{ROOT}`)"), and confirm the path is reachable in this environment (network / sync) or mark it "pending sync".
 - **Historical records are not silently rewritten**: absolute paths already written in existing documents are **facts** (that is where it actually happened), keep the original text + a note (e.g. "this path belongs to environment X; in the current environment resolve it via `{ROOT}`") rather than silently rewriting history.
 - **Scripts/config cleaned up in parallel**: in-project scripts and config files are equally bound by these rules; check every file for hardcoded drive letters during rollout (12.1 + these rules executed together).
@@ -542,6 +591,8 @@ At the "Session Recovery Protocol" (Ch. IX), attach a "Takeover Checklist" that 
 - [ ] Determined which track this instruction belongs to: project-space maintenance, or public-spec publishing (see dual-track declaration)
 - [ ] Reconciled current status and in-progress tasks; no unclosed in-flight task (or already reconciled)
 - [ ] If publishing: confirmed the three red lines — auth / scope / authorship
+- [ ] If out-of-workspace deployment artifacts exist (v1.14): read the corresponding line's deployment manifest (`deploy-manifest.md`), confirmed live paths / workspace copies / contains-credentials, and is aware of the "Not covered" items
+- [ ] Read the last 3 days of the session journal (`project-context/journal/`, v1.15): knows where the previous session stopped and what open items it left, before acting
 - [ ] Clarified the downstream relay order of this change (which file moves next)
 
 > This checklist makes the "Session Recovery Protocol" executable: turning "what to do on recovery" from a principle into a tick-action, lowering the chance a new Agent skips a step. It is also the acceptance criterion for new-Agent-takeover — if every item can be ticked, the project's self-description is proven adequate.
@@ -662,6 +713,8 @@ The four-state patrol checklist is the "release gate" of iteration close-out: be
 - **Reversible placeholders**: keep true values in the local working copy; in the released version replace sensitive values with neutral placeholders (e.g. `<API_KEY>`, `<intranet-host>`, `<name>`). The placeholder-to-true mapping stays local-private only and **never enters the released version**, so the public copy stays publishable while the local copy can be restored.
 - **Boundary**: desensitization is a one-time manual pass before release; this version does not provide a machine scanning gate (left as a future optional extension). Sensitive content inside historical records is handled per 12.5 ("keep original + annotate"), never silently rewritten in the released version.
 
+> **Internal sync is out of scope here (v1.14)**: this section governs "outbound" only. Internal / multi-machine sync projects are not forced to desensitize, but **credential-bearing deployment artifacts** remain bound by XXIV.24.5 "no-mirroring of credentials" — credential snapshots must never be copied into any sync directory (Drive / cloud drive / private repo), whether or not that directory is public.
+
 #### 15.4 Reference-doc version status (new in v1.11): when `references/` piles up multiple versions, which one is current must be decidable
 
 Active-context lightening governs "active files vs archival". But the `references/` layer has another problem: **multiple versions of the same topic stacked** (draft v0.1 / v0.2 / plan A / plan B), leaving a successor unable to tell which is the currently valid version, possibly executing against a stale doc. Hence this version discipline for reference docs (design docs / drafts / plans / roadmaps etc.):
@@ -698,6 +751,7 @@ v1.4's "Four-state Patrol Checklist" is a manual tick-action. v1.5 upgrades it i
   | **Timestamp (v1.6)** | Do BRIEF and current's contract-header `last_updated` match? | both carry explicit `last_updated` and the values match (step 1 of the 9.1 recovery protocol becomes machine-checkable) |
   | **Document-health smells (v1.7)** | Any dangling links / leftover placeholders / missing required fields / open UNKNOWNs / oversized active file? (see 17.5) | ERROR-class cleared, WARN-class explicitly addressed (ERROR blocks; WARN only advises) |
   | **Process-flexibility self-check (v1.8)** | Do in-flight tasks declare takeover intent and size tier? Do heavy tasks declare a standards alignment check? (see 18.4) | Light/Medium may skip; Heavy must declare explicitly (WARN only, non-blocking) |
+  | **Write-back freshness (v1.15)** | Does `current.md`'s `last_updated` lag the newest mtime in the project? Is there no journal entry for the day? Is write-back in a gap? (see 25.4) | WARN only, **reports but never writes** (criteria rest on persisted facts, not the Agent's self-report) |
 
 - **Output**: a "readiness report" — which states are closed, which have gaps, gaps located to the line — for use before publishing (echoing the 15.3 release gate) or at any checkpoint.
 - **Link to publish flow**: the 15.3 release gate upgrades from "manual patrol" to "manual or scripted gate" — the gate's "four states closed" output is one of the publish preconditions.
@@ -719,6 +773,7 @@ BRF's single entry is BRIEF (plain Markdown, platform-agnostic). But mainstream 
   | File Organization + File Index (BRIEF II/IV) | "Project Structure / Key Files" section | Tells the platform Agent which files to read first |
   | Session Recovery Protocol + Takeover Checklist (Ch. IX/XIII) | "Work Rules / Takeover Steps" section | Makes the platform Agent also follow the recovery protocol, not assume auto-sync |
   | Current Status + Recent Decisions | "In-progress / Recent decisions" section (optional, refresh periodically) | Platform-side Agent also sees current progress |
+  | Session-level write-back contract (v1.15, Ch. XXV) | "Working rules / handoff steps" section | Platform-side sessions start already bound to "five-line journal + write-back declaration", no user reminder needed |
 
 - **One-click produce / recover**: ship a script or documented steps in the project to generate `AGENTS.md` / `CLAUDE.md` from BRIEF (forward), and merge platform-side manual edits back into BRIEF (reverse, optional) — on recovery, BRIEF wins, avoiding dual-source drift.
 - **Does not violate the de-platform-binding red line**: the adapter is a "mapping layer", not a "replacement layer" — the core is still plain-Markdown BRIEF; the mapping rules themselves are platform-agnostic plain text that merely describe "how to dock with a platform's entry". It solves the pain of "BRF projects can also enjoy platform auto-takeover" rather than binding BRF to any platform.
@@ -745,6 +800,7 @@ Problem: a handoff says "done / fixed / shipped", yet the next Agent cannot tell
 | **How verified** | How it was verified — command / test / re-read / manual check; must be reproducible |
 | **Result** | What was actually observed — pass / fail / key numbers / evidence pointer |
 | **Not verified** | What was not verified, why, risk and suggestion (explicitly leave blank; write "none" if so) |
+| **Reconstructability (v1.14)** | Can this conclusion / artifact be reproduced on a clean machine? Yes = the minimal step pointer; No = which pieces are missing (interpreter / packages / registrations / credentials / device-side config), and record them in the 17.2 UNKNOWN ledger |
 
 Template (pure Markdown, paste directly into current / the relay baton):
 
@@ -753,6 +809,7 @@ Template (pure Markdown, paste directly into current / the relay baton):
 > · How verified: (command / test / re-read path; reproducible)
 > · Result: (actual observation: pass / fail / numbers / evidence pointer)
 > · Not verified: (what wasn't, risk, suggestion; "none" if nothing)
+> · Reconstructability: (reproducible on a clean machine? if not, what's missing and which UNKNOWN entry covers it)
 
 > Key point: the validation statement separates "claim" from "evidence". **A not-verified item is not a deduction — hiding it is.** Writing "what wasn't verified" explicitly is what stops the next Agent from treating the unverified as established.
 
@@ -801,6 +858,7 @@ Making 17.1–17.4 machine-checkable: beyond four-state / timestamp / encoding, 
 | **Missing required field** | Are contract-header required fields (role / last_updated, etc.) and decision fields empty? | ERROR | 16.1 / 17.1 |
 | **Open UNKNOWN** | Count of "to-confirm" rows in the UNKNOWN ledger (must be addressed by name at close-out) | WARN | 17.2 |
 | **Active file oversize** | Does the active file's lines / KB exceed the 17.4 threshold? | WARN | 17.4 |
+| **Write-back staleness (v1.15)** | Does `current.md`'s `last_updated` lag the newest project mtime; is there no journal entry for the day; is write-back in a gap | WARN | 25.4 |
 
 Two levels: **ERROR must be cleared to pass the release gate** (dangling links / missing required fields directly mislead the next Agent); **WARN only advises, never blocks** (placeholders / UNKNOWN count / oversize are left to human judgment on whether to handle this round), so noise does not drown the signal. For the minimal implementation see 16.1's `four-state-gate.ps1` (v1.7 includes this family; plain file, zero dependency).
 
@@ -1177,6 +1235,7 @@ The contract header (Chapter II) gains an optional `environment` field (**requir
 
 - **Determination methods: principles only, no commands**: concrete probing commands (e.g. `Test-Path`, `hostname`) are project-ops details left to the user; the spec only requires "a machine-executable determination method exists".
 - **"Accessible" ≠ "writable"**: reads may legitimately cross environments via network/shared paths (reading the sync hub or another machine's share is legal); **writes default to this environment's `{ROOT}` only**, and cross-environment writes require explicit declaration plus Chapter XIX single-writer discipline.
+- **Runtime-artifact directory (optional, v1.14)**: if this environment hosts out-of-workspace deployment artifacts, the topology table may add a "runtime-artifact directory" column recording only **where this environment's artifacts live**; per-artifact live paths / copies / restore methods are not written here but in the deployment manifest (XXIV.24.2), the two tables linked by environment logical name, so the same path is not described differently in two places.
 - **Example (generic scenario, not a real topology)**:
 
 | Logical name | Determination method | Root-path placeholder | Accessible path set | Write permission |
@@ -1187,7 +1246,7 @@ The contract header (Chapter II) gains an optional `environment` field (**requir
 #### 23.3 Path representation rules (12.5 detailed version, mandatory)
 
 - **Logical paths first**: references inside BRIEF / documents / scripts use logical paths (`{ROOT}/project-context/…`) or relative paths; logical names are defined and resolved only in the environment topology table.
-- **Bare absolute paths forbidden (mandatory)**: never write unannotated absolute physical paths (`C:\…` / `E:\…` / `\\NAS\…` / `/home/…`); **the only exception = inside the environment topology table** (mapping values are themselves declared paths).
+- **Bare absolute paths forbidden (mandatory)**: never write unannotated absolute physical paths (`C:\…` / `E:\…` / `\\NAS\…` / `/home/…`); **the only exception = inside the environment topology table** (mapping values are themselves declared paths), plus the "live path" column of the deployment manifest in Chapter XXIV (a runtime fact record, treated as the same exemption per 24.6, and the manifest itself is never published).
 - **Cross-environment references must be annotated**: when a path really points to another environment, annotate the environment's logical name (e.g. "read `{ROOT}/docs/x.md` (`DEV-desktop`'s `{ROOT}`)"), and confirm reachability in this environment or mark "pending sync".
 - **Historical records are not silently rewritten**: absolute paths already written in existing documents are facts (that is where it actually happened), keep the original text + a note ("this path belongs to environment X; resolve via `{ROOT}` in the current environment").
 - **Scripts/config cleaned up in parallel**: in-project scripts and config files are equally bound (executed together with 12.1).
@@ -1208,3 +1267,216 @@ The contract header (Chapter II) gains an optional `environment` field (**requir
 - Gate machine check "bare absolute path smell" — deferred as a future optional extension (convention first, machine checks later, echoing the v1.5 gate cadence).
 
 > Chapter point: v1.12 turns "environment/path ambiguity" from ad-hoc guessing into explicit governance — environment declaration gives the identity carrier (23.2), path rules give the representation grammar (23.3), determination discipline gives the takeover action (23.4), the three-piece set embedded into existing structure via the contract-header field, 12.5 and recovery-protocol Step 0; complementary to Chapter XIX's "between Agents" as "double isolation for multi-environment × multi-Agent". Deliberately excludes concrete ops details and automatic detection tooling, keeping the three red lines of pure Markdown, zero dependency and de-platform-binding.
+
+---
+
+### XXIV. Deployment Artifact Traceability: Takeover-readiness of the Out-of-workspace Runtime Side (new in v1.14)
+
+> **Starting point**: since v1.0, BRF treats the "project space" as the single source of truth — the BRIEF index, four states, gates and release package all revolve around documents inside the project directory. That holds for **document work**, but not for projects with a **runtime side**: long-running services, daemon scripts, startup items, scheduled tasks, and artifacts pulled by devices naturally live in system directories or standalone run directories. They are not in the project space and not in the sync scope. The result is a successor who receives a project that "reads but cannot run" — complete docs, missing code, unrecorded dependencies, and a live version newer than the workspace copy. This chapter makes the runtime side a first-class citizen, complementing Chapter XII (carrying/installing in-project items), XV (active-context lightening), XVII (handoff trustworthiness) and XXIII (environment topology) without duplicating their jobs.
+
+#### 24.1 The problem: the project space is a source of truth, but not the whole truth
+
+Three classes of deployment artifacts genuinely exist, and none is in the project space's normal index:
+
+| Class | Typical form | Why it lives outside the project space |
+|---|---|---|
+| **Long-running service** | HTTP service, rendering service, collection process | Needs a fixed run directory, standalone interpreter, a persistent port; cannot follow the docs directory |
+| **Daemon & startup items** | Daemon bat/vbs, watchdog, autostart, system service, firewall allowance | Registered at the OS layer; location determined by the platform, not the project |
+| **Generated artifacts & ops scripts** | Images/data snapshots pulled by devices, refresh scripts, credential-generation scripts | Produced by the run flow, updated on a runtime cadence; a different lifecycle from docs |
+
+Three facts follow, and they are the whole reason for this chapter:
+
+1. **Index blind spot**: BRIEF records no location for these artifacts; a successor does not know "what else is out there";
+2. **Version fork**: the live copy changed while the workspace copy did not follow; a successor restoring from the workspace reverts an already-fixed bug;
+3. **Handoff rupture**: the environment may carry a whole set of "interpreter + dependency packages + startup items + port allowances"; miss any one and the successor must redo trial-and-error from zero — and the price is often silent failure (the service dies while the device keeps displaying a cached frame, "looking normal").
+
+> Boundary awareness: this chapter does not advocate "expanding the project space to the whole disk". It requires only that the runtime side be **visible, decidable, reconstructable** — visible via the manifest, decidable via copies and version alignment, reconstructable via restore methods.
+
+#### 24.2 Deployment manifest (mandatory for all projects, per line)
+
+**Location (per line)**:
+
+- Single-line project: `{ROOT}/deploy-manifest.md`;
+- Multi-line project: one per line, `{ROOT}/<line>/deploy-manifest.md` (the runtime side is naturally divided by line; merging it into the root blurs everything).
+
+**Mandatory scope (all projects)**: every BRF project must maintain its deployment-manifest section. **A project that currently has no out-of-workspace deployment artifacts must still keep the section and state explicitly "no out-of-workspace deployment artifacts", with the determination date** — silent omission is not allowed. Reason: deployment artifacts often appear only when a project grows to a certain stage; an already-existing empty slot is far easier to notice when that assumption breaks than "there never was a slot".
+
+**Five required columns**:
+
+| Column | What to write | Judgement point |
+|---|---|---|
+| **Live path** | Where the artifact actually is (per the path rules in 24.6) | Precise to file or directory; list multiple instances one by one, never "several" |
+| **Purpose** | One sentence on why it must live outside the project | Write "must stay resident / OS-level registration / pulled by a device", not empty phrases like "helper script" |
+| **Workspace copy** | Relative path of the corresponding copy in the workspace; when uncopyable, write "no copy + reason" | **File copies are authoritative**: anything copyable must have a copy, and the same version as live (see below) |
+| **Restore method** | How to install it back on a new machine / reinstall | With a copy = copy path + destination; without = rebuild steps (source, dependencies, registration content, allowed objects) |
+| **Contains credentials** | Yes / No | "Yes" entries are bound by 24.5 and must not be mirrored |
+
+**Mandatory "Not covered" section**: the manifest must end with a section honestly registering what has not been retrieved or registered, or exists only on the device side (e.g. device-side config, unexported dependency version details). This section is not a deduction — **hiding it is**. Its job is to tell the successor "where the remaining pits are", not to make the manifest look complete.
+
+**Copy and live must be the same version**: a workspace copy is not "we copied it once", it is "currently identical to live". For copyable text artifacts, compare item by item at rollout (hash or content diff) and note the verification date in the manifest; after a live change, update copy and manifest within the same change.
+
+**Update trigger (mandatory at the same level as the Update SOP)**: adding, removing, moving, changing interpreter or run account, or changing the startup method **must all update the manifest within the same change**. "Code changed, manifest next week" is not allowed.
+
+**Division from 12.3**:
+
+| Checklist | Question it answers | Objects covered |
+|---|---|---|
+| 12.3 cross-platform deployment checklist | Are in-project tools/scripts carried with the project? How are runtime deps installed? | **In-project** (carried vs needs-install) |
+| 24.2 deployment manifest | Where are the out-of-project runtime artifacts, what is their live version, is there a copy, how to rebuild? | **Out-of-project** (live vs workspace) |
+
+The two are not merged: one asks "is the package complete", the other "what hangs outside the package". A 12.3 "needs fresh-environment install" item that actually points to a runtime artifact must register its live location in the deployment manifest.
+
+#### 24.3 Reconstructability: running on site ≠ reproducible on a clean machine
+
+The four parts of the 17.1 validation statement settle "was the conclusion verified", but do not distinguish two kinds of "verified":
+
+- **Running on site**: I saw the port listening and the task running on this machine;
+- **Reconstructable**: on a clean machine, the docs are enough to install it back and run it.
+
+The two fork the moment a dependency is missing from the docs, and the fork's cost is silent (the service dies while the device keeps displaying the old frame; the screen "looks normal" although it has not updated for a dozen hours). Hence the 17.1 validation statement gains a **fifth part, "Reconstructability"**:
+
+> · Reconstructability: (reproducible on a clean machine? Yes = pointer to the minimal steps; No = which pieces are missing: interpreter / dependency packages / registrations / credentials / device-side config)
+
+Three hard rules:
+
+1. **A missing piece must not be written as "known"**: whatever cannot be reproduced may only enter the 17.2 UNKNOWN ledger, stating what is missing, how to fill it, and who owns it;
+2. **"The service is running" ≠ "the service is working"**: for pull-type devices (screens, dashboards, collectors) there must be end-to-end evidence (e.g. server-side arrival logs), not just a live process or a device-side display;
+3. **Reconstructability is judged per artifact**: the whole project need not be reconstructable at once, but every manifest entry must be labelled "copy-restorable / rebuild-by-steps / not yet reconstructable".
+
+#### 24.4 Three exits for temporary artifacts (the third state is forbidden)
+
+Temporary artifacts (test images, mock comparisons, one-off debug scripts, temp logs, intermediate exports) have no natural exit mechanism inside a deployment directory, so they sit next to deliverables for months and a successor cannot tell truth from scratch. **Three legitimate exits — one must be chosen**:
+
+| Exit | Applies to | Action |
+|---|---|---|
+| **① Delete on completion** (default) | One-off test output, mock comparisons, temp logs, debug scripts | Delete on the spot when the task ends; leave nothing behind |
+| **② Promote, rename, move into the workspace** | Samples to keep as evidence or future comparison | Rename semantically (purpose + date + status), move into the workspace's line directory, register in the manifest or that line's index |
+| **③ Register as reconstructable** | Caches, snapshots, logs, rolling gates | State in the manifest "safe to delete any time; regenerated automatically / on next run" |
+
+**The third state is forbidden**: still on site, not in the manifest, and nobody knows whether it can be deleted. This is the only hard prohibition in temporary-artifact governance — it creates both deletion risk and size noise.
+
+**Naming prohibition**: `_test_*`, `mock_*`, `test.png`, `tmp_*` must not serve as long-term retained filenames; keep it only via exit ② with a semantic rename. Temporary files may use such names, but must be disposed of via ① or ② when the task ends.
+
+#### 24.5 No-mirroring of credentials (the internal-sync dimension of 15.3)
+
+Deployment directories commonly hold credential snapshots (token-bearing env files, connection strings, exported cookies). 15.3's desensitization covers only **outbound** (public repos, public shares) and explicitly exempts "internal-private projects kept only on this machine or an intranet sync"; but "copy the whole deployment directory into the sync drive" happens precisely on the **internal sync** path — mirror it wholesale and the credentials get copied across machines, copies and history.
+
+Rules:
+
+- Any artifact whose "Contains credentials" column says "Yes" **must not be copied into any sync directory** (cloud drive, shared drive, private repo, sync hub), whether or not that directory is public;
+- Record only the **generation method** (e.g. "regenerated by running the refresh script inside a session"), never the credential content;
+- If a directory holds both credential and non-credential artifacts, split by item: mirror the non-credential ones as usual, isolate the credential one;
+- If an artifact cannot be split (credentials and runtime data in one file), do not mirror it at all; record the generation method and dependencies instead.
+
+Division from 15.3: 15.3 asks "may it be published", this asks "may it be copied"; before any outbound release, still run the full 15.3 pass — both apply.
+
+#### 24.6 Path truth vs the desensitization boundary (without breaking 12.5)
+
+The manifest inevitably contains live absolute paths, intranet addresses and hostnames, which directly conflicts with 12.5 "bare absolute paths forbidden". The solution is not to open another exception in 12.5, but to **fold it into the existing one**:
+
+- The manifest's "Live path" column belongs to the declared paths **inside the 23.2 environment topology table** — the same class as the table's mapping values, a "runtime fact record", not a casually hardcoded drive letter;
+- The manifest itself is a **sensitive file**, its header annotated (HTML comment) with that nature: contains real runtime-side paths, never syncs to a public repo, never enters a release package;
+- The manifest **never appears in a release**: excluded when assembling the release package (linking to the publish whitelist mechanism); public templates / examples use placeholders only (`{DEPLOY_DIR}`, `{HOST_IP}`, `{HOST_NAME}`);
+- **Minimum necessary**: paths go only to the granularity needed to locate the artifact — no unrelated personal directories, no device serial numbers, no account details unrelated to running;
+- If the project space itself syncs to multiple machines, intranet identifiers in the manifest are "internally visible" and need not be published; once the manifest must be shared outside the project, run a 15.3 pass.
+
+> In one sentence: **truth stays in the project space, placeholders go into public artifacts** — the same principle as 15.3 ("keep true values locally, replace with neutral placeholders in the release, mapping never enters the release"), applied at two landing points.
+
+#### 24.7 Deliberate exclusions
+
+- **Deployment-directory scan gates / scripts that auto-detect deployment artifacts**: live directories often sit on machines or system locations the gate cannot reach, making machine checks prone to false alarms; this round keeps it as discipline only, machine checks deferred as a future optional extension (consistent with v1.13's "convention first, machine checks later" cadence);
+- **Platform binding**: no concrete launcher names, service-manager names or sync-tool names; use generic terms "autostart item / system service / sync hub";
+- **Copying other programs' installation directories into the workspace**: register only artifacts produced by this project; interpreters, runtimes and third-party software install dirs appear only as source + install command in "restore method", never as wholesale directory copies;
+- **Full mirroring of dependency lists**: no requirement to commit a full `pip freeze`; state only the "minimum dependency set + version constraints" needed for a rebuild;
+- **Using the manifest as a backup**: the manifest is a "rebuild manual", not a backup system; workspace copies guarantee "can install back", not "can restore runtime data".
+
+> Chapter point: v1.14 turns the runtime side from tacit knowledge into an explicit asset — the manifest gives location and version (24.2), reconstructability gives the handoff criterion (24.3), three exits give temporary artifacts a destination (24.4), no-mirroring gives the internal-sync safety line (24.5), and the topology exemption gives the desensitization solution (24.6). All four ride on pure Markdown and existing structures, introducing no runtime and no scanning tooling, keeping the three red lines of pure Markdown, zero dependency and de-platform-binding.
+
+---
+
+### XXV. Session-level Write-back: Journal, Declaration and Staleness Detection (new in v1.15)
+
+> **Source**: On 2026-11-09 the project owner reported — "under the current BRF system I still have to prompt the Agent in every chat window to update BRIEF; when I forget once, several turns and a context compaction later the information is lost and BRIEF falls behind."
+>
+> One correction first: **"the user prompting every time" is not an action the framework requires — it is a compensation for failed execution.** 9.2 already says "persist immediately when any task step completes; do not wait until session end to backfill." What is actually missing is not a reminder, but making write-back an action that cannot be skipped and making a missed write-back visible and checkable.
+
+#### 25.1 The problem: why write-back necessarily decays in long sessions
+
+Three structural causes, none of which is "the Agent being disobedient":
+
+| # | Cause | Manifestation |
+|---|---|---|
+| 1 | **Triggers are event-based; conversations produce no events** | Ch. VII's update-rule table triggers on "task done / new decision / file added / deployment artifact changed"; an ordinary discussion produces no such event, so the whole chain never fires — while information keeps draining |
+| 2 | **The per-write cost is too high** | A write-back touches `current.md` (tens of KB) plus BRIEF Ch. II/Ch. III and changelog; in a long session the Agent's reasonable choice is "finish the work first, then write" — and there is no "then" |
+| 3 | **Compaction makes after-the-fact rescue impossible** | Compaction loses the Agent's memory, not the files. As long as write-back happens **before** compaction, nothing is lost. The problem is that the compaction moment is unpredictable, so "write it up at the end" is guaranteed to lose |
+
+Inference: **write-back reliability is not proportional to the Agent's memory but inversely proportional to granularity.** Demanding "remember to update in time" bets reliability on the weakest links (human memory and model context length); this section moves the bet onto three things memory cannot affect: a low enough per-write cost, visible evidence on every delivery, and detection when it is missed.
+
+**Scope of this chapter**: it does not promise that "the Agent will remember"; it introduces no session-event listener (16.3 already rules that out); it performs no auto-backfill (see the red line in 25.4); and it does not manage session history itself (that belongs to session-layer version-control tools — BRF covers the project layer).
+
+#### 25.2 The session journal: bring one write-back inside 30 seconds
+
+- **Location**: `project-context/journal/YYYY-MM-DD-<topic>.md`. **Not `.working/`** — `.working/` is the "auto-cleaned, not version-controlled" temp area (Ch. I directory tree), while a journal is a trace worth keeping and must live inside the project space under version control.
+- **Granularity**: one file per session; split by topic when one session advances several topics; parallel Agents each keep their own line per Ch. XIX and never co-write one file.
+- **Five fixed lines** (a sixth is waste):
+
+  | Line | Content | Example |
+  |---|---|---|
+  | Time span | Date + start–end | 2026-11-09 08:20–08:55 |
+  | What was done | Action and object, no feelings | Reviewed the v1.15 requirement, added Ch. XXV, added the stale check to the gate |
+  | Decisions | What was decided, and by whom | Owner decided "do it all at once"; I decided the journal lives in the project space, not `.working/` |
+  | Artifact paths | Files changed/created, relative | `handoffs/简报接力.md`, `tools/four-state-gate.ps1` |
+  | Open items and next step | Unclosed items, who acts next | Release credential undecided; NAS verification pending |
+
+- **Append-only**: within a session, append only, never restructure; never rewrite the same file.
+- **Relation to the truth**: the journal is a **log**, not the truth. It does **not replace** `current.md` / `changelog.md`; at a node close-out (15.1) distil it into current / changelog, and monthly merge finished entries into `journal/archive/YYYY-MM.md`, keeping the active directory to the current month.
+- **Why this works**: it changes no large file, touches no contract header, restructures no directory — so the Agent has no "afraid of breaking it" reason to skip, and the cost is too low to be squeezed out of a long session.
+
+#### 25.3 Write-back declaration: make "did it get written back" visible at a glance
+
+Always the **last standalone line of a delivery reply**, in a fixed format:
+
+```text
+Write-back: context/current.md 2026-11-09 14:20 · journal/2026-11-09-v115-release.md · 2 open items
+```
+
+- List only files **actually changed**, with times; never "intend to change"; when nothing changed write `Write-back: no changes (reason)` — the line itself may not be omitted;
+- A missing line counts as **not delivered** and can be sent straight back — this is the zero-cost checkpoint for the human: the user need not remember to remind the Agent, only check whether the last line exists;
+- One line at most: no prose, no retelling of the process; take the time from the contract header's `last_updated`, the same source as the 16.1 timestamp consistency check.
+
+> Purpose: turn reliability from "human memory + model diligence" into "format visibility". Invisible promises decay; visible gaps get questioned.
+
+#### 25.4 Staleness detection: make "forgot" visible instead of invisible
+
+Until v1.15 the 16.1 gate only checked that BRIEF's and current's `last_updated` were **consistent with each other**, never whether they were **behind reality** — both frozen three days ago still counts as "consistent". This section adds three WARN-level checks (verified by `tools/four-state-gate.ps1` from v1.15):
+
+| Check | Criterion | Level | Note |
+|---|---|---|---|
+| **Suspected unwritten changes** | `current.md`'s contract-header `last_updated` predates the newest changed file inside the project space (excluding `.git/`, `.working/`, `journal/archive/`) | WARN | File mtime is an objective fact and does not depend on the Agent's self-report |
+| **No journal entry today** | No entry under `journal/` for the day (or the latest working day) while project files did change | WARN | Catches "a whole conversation with nothing persisted" |
+| **Write-back gap** | The newest journal entry is older than a threshold (default 7 days) while the project did change | WARN | Catches the habit of relying on human reminders |
+
+- **Criteria recognise file facts only**: mtime and `last_updated` are persisted objective values; no need for the Agent to report "whether I wrote".
+- **Red line: the detector never writes.** The gate and any scheduled patrol only report to the human or the current session; they must **not auto-backfill** BRIEF / current — context-free backfill overwrites the truth and turns inference into conclusions (the same reason 16.3 excludes auto-sync).
+- **False positives**: read-only checks, bulk renames and external sync write-backs all refresh mtime, so a WARN may be judged a false alarm and named at that close-out; clearance is not required.
+
+#### 25.5 Division of labour and deliberate exclusions
+
+| Mechanism | What it covers | Relation to this section |
+|---|---|---|
+| 9.2 Incremental Persistence Discipline | **Principle**: persist every step, no end-of-session backfill | This section gives it a low-cost carrier (25.2) and visible evidence (25.3) |
+| 25.2 Session journal | **Carrier**: a 30-second append | High frequency, lightweight, never touches truth files |
+| 25.3 Write-back declaration | **Evidence**: one line at delivery | Lets the human accept with zero effort |
+| 25.4 Staleness detection | **Detection**: mtime comparison | Makes gaps visible; reports but never writes |
+| 16.2 Platform Entry Adapter | **Auto-takeover**: BRIEF ⇄ `AGENTS.md`/`CLAUDE.md` | Carries the write-back contract as one mapped item (see the 16.2 table), so platform-side sessions start already bound |
+| 15.1 / 15.3 | **Node gates**: iteration close-out and release | This section is the high-frequency layer below node level; the three stack without replacing each other |
+
+**Deliberately excluded**:
+
+- **Auto-backfill / auto full-sync of BRIEF**: context-free backfill means letting the detector invent facts; 16.3 already shows platform-side listening is unworkable;
+- **Real-time session-event hooks**: platform binding, violating the de-platform-binding first constraint (same as 16.3);
+- **Replacing `current.md` / `changelog.md` with the journal**: a log is not the truth; substituting it sends successors digging through fragments;
+- **Shipping the journal in a release package**: it is internal project trace, outside the release whitelist;
+- **Loading write-back with a heavy schema / file fingerprint / word quota**: violates pure-Markdown zero-dependency and raises the per-write cost — exactly the opposite of this section's purpose.
+
+> Chapter point: v1.15 does not try to make the Agent "remember better". It makes write-back **impossible to skip** (a 30-second journal), **visible** (one line at delivery) and **checkable when missed** (mtime comparison). All three ride on pure Markdown and the existing script — no hooks, no runtime, no auto-writing on the Agent's behalf.
